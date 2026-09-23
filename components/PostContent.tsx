@@ -3,6 +3,20 @@
 import { useEffect, useRef } from "react";
 import mermaid from "mermaid";
 
+function parseYouTubeInput(input: string): { id: string; start?: number } | null {
+  const trimmed = input.trim();
+  const match = trimmed.match(
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/
+  );
+  const id = match ? match[1] : /^[\w-]{11}$/.test(trimmed) ? trimmed : null;
+  if (!id) return null;
+
+  // Supports ?t=90, ?t=90s and ?start=90 style timestamps.
+  const timeMatch = trimmed.match(/[?&](?:t|start)=(\d+)/);
+  const start = timeMatch ? parseInt(timeMatch[1], 10) : undefined;
+  return { id, start };
+}
+
 export default function PostContent({ html }: { html: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -13,8 +27,10 @@ export default function PostContent({ html }: { html: string }) {
     const isDark = document.documentElement.classList.contains("dark");
     mermaid.initialize({ startOnLoad: false, theme: isDark ? "dark" : "default" });
 
-    const blocks = Array.from(container.querySelectorAll<HTMLElement>("code.language-mermaid"));
-    blocks.forEach((block, index) => {
+    const mermaidBlocks = Array.from(
+      container.querySelectorAll<HTMLElement>("code.language-mermaid")
+    );
+    mermaidBlocks.forEach((block, index) => {
       const definition = block.textContent ?? "";
       const id = `mermaid-diagram-${index}-${Math.random().toString(36).slice(2)}`;
       mermaid
@@ -28,6 +44,46 @@ export default function PostContent({ html }: { html: string }) {
         .catch((err) => {
           console.error("Failed to render mermaid diagram", err);
         });
+    });
+
+    const youtubeBlocks = Array.from(
+      container.querySelectorAll<HTMLElement>("code.language-youtube")
+    );
+    youtubeBlocks.forEach((block) => {
+      const parsed = parseYouTubeInput(block.textContent ?? "");
+      if (!parsed) {
+        console.error("Could not extract a YouTube video ID from:", block.textContent);
+        return;
+      }
+      const wrapper = document.createElement("div");
+      wrapper.className = "youtube-embed";
+      const iframe = document.createElement("iframe");
+      const startParam = parsed.start ? `?start=${parsed.start}` : "";
+      iframe.src = `https://www.youtube-nocookie.com/embed/${parsed.id}${startParam}`;
+      iframe.title = "YouTube video player";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+      iframe.loading = "lazy";
+      wrapper.appendChild(iframe);
+      block.closest("pre")?.replaceWith(wrapper);
+    });
+
+    const videoBlocks = Array.from(
+      container.querySelectorAll<HTMLElement>("code.language-video")
+    );
+    videoBlocks.forEach((block) => {
+      const src = (block.textContent ?? "").trim();
+      if (!src) return;
+      const wrapper = document.createElement("div");
+      wrapper.className = "video-embed";
+      const video = document.createElement("video");
+      video.src = src;
+      video.controls = true;
+      video.playsInline = true;
+      wrapper.appendChild(video);
+      block.closest("pre")?.replaceWith(wrapper);
     });
   }, [html]);
 

@@ -27,6 +27,9 @@ export default async function PostPage({
             {post.link}
           </a>
         )}
+        {post.tags && post.tags.length > 0 && (
+          <p className="text-xs opacity-60 mt-1">Tools: {post.tags.join(" · ")}</p>
+        )}
       </header>
       <PostContent html={post.contentHtml} />
     </article>

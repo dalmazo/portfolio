@@ -50,6 +50,33 @@ have to write Mermaid syntax by hand:
 This is an authoring-time convention — there is no runtime AI call in the deployed
 site, keeping it fully static and free to host.
 
+### Embedding YouTube videos
+
+Drop a fenced code block tagged `youtube` containing the video's URL (or bare
+11-character video ID):
+
+````md
+```youtube
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+```
+````
+
+The renderer replaces it with a responsive, privacy-enhanced (`youtube-nocookie.com`)
+embedded player.
+
+### Embedding local video files
+
+Put the video file in `public/videos/` and reference it with a fenced `video`
+code block:
+
+````md
+```video
+/videos/my-clip.mp4
+```
+````
+
+The renderer replaces it with an HTML5 `<video controls>` player.
+
 ## Rule 4 — Easy to maintain, hosted on GitHub Pages
 - Stack: Next.js (App Router, TypeScript) with static export (`output: 'export'`).
 - No backend/server, no database — everything is static files + Markdown.
