@@ -11,8 +11,9 @@ link: "https://youtu.be/DcvUOqqnc3g?t=60"
 
 ### LiveOps art integration
 
-I joined the project to improve a mostly manual LiveOps art integration
-workflow. I became the main implementer, building about 98% of the pipeline.
+I joined the team to handle LiveOps art integration. Alongside my day-to-day
+work, I set aside time to build an automation pipeline that would make my job
+easier.
 It automated the process shown below, taking it from more than a day of manual
 work to under 30 minutes on a cloud-hosted macOS machine.
 
@@ -69,3 +70,7 @@ relying on Unity's post-processing stack. Because the render pipeline was
 heavily customized, we integrated the function directly into each shader that
 needed it. This opened up new visual possibilities for characters, effects,
 and customization throughout the game.
+
+```youtube
+https://youtu.be/DcvUOqqnc3g?t=60
+```

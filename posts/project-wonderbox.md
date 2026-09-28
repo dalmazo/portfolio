@@ -1,40 +1,40 @@
 ---
 title: "Wonderbox"
-date: "2022-01-01"
+date: "2022-09 – 2023-06"
 type: "project"
-summary: "Tools Technical Artist — screenshot tool, localization pipeline, DLSS, SVG factory."
+summary: "Led development of an Unreal tool that turns SVGs into configurable SDF, MSDF, and MTSDF textures."
 tags: ["Technical Artist", "Tools", "Blueprint"]
-link: "https://playwonderbox.com"
+link: "https://www.aquiris.com.br/presskit/games/wonderbox"
 ---
 
-## Tools Technical Artist
+## Technical Artist (Tools)
 
-I made a few contributions to the project, working about 6 months on 4 major
-pieces of work:
+During six months on Wonderbox, I contributed to four major technical-art
+efforts:
 
-- **Character/block screenshot tool** — an in-editor tool to render characters
-  and blocks to PNG/TIFF with the full render pipeline enabled, then hand off
-  to Adobe Substance Designer for post-processing before re-integrating the
-  textures. Built with Unreal Python + Editor Widget Blueprint + Substance
-  Python integration.
-- **Localization helper tool** — automated the post-Unreal spreadsheet steps
-  of the localization pipeline using Python, so the localization team could
-  keep working from the same spreadsheet format, plus documentation.
+- **SVG texture factory** — using [msdfgen](https://github.com/Chlumsky/msdfgen),
+  we built a C++ tool that lets users drag and drop an SVG into Unreal and
+  generate a texture with a configurable resolution and SDF type (SDF, MSDF, or
+  MTSDF). I came up with the idea, led the main development, and handled testing.
+  Engineering helped with parts of Unreal's factory implementation.
+- **Character/block marketing render tool** — I built the full in-editor tool
+  using Unreal Python and an Editor Widget Blueprint. It rendered characters
+  and blocks to PNG/TIFF with the full render pipeline enabled. I also wrote
+  the Python scripts to post-process the exports in Adobe Substance Designer.
+  The resulting images were for marketing.
+- **Localization tools** — we built a few supporting tools around Unreal's
+  default `.po` localization pipeline to help the team improve and maintain the
+  workflow. This was a short effort that took a couple of weeks.
 - **DLSS integration**, including UI enhancements to expose the feature.
-- **SVG Factory for perfect icons** ✨ — using [msdfgen](https://github.com/Chlumsky/msdfgen),
-  a factory that lets a user drag-and-drop an SVG into Unreal and generate a
-  texture from parameters (resolution, SDF type: sdf/msdf/mtsdf). Built in C++.
 
-This was by far the most difficult and enjoyable task I had on Wonderbox. When
-it shipped internally, Aquiris was acquired by Epic, and I became a Technical
-UI Designer on the first team integrated into Fortnite.
+Wonderbox was one of the most difficult and enjoyable projects I worked on.
 
-### Screenshot tool pipeline
+After Epic acquired Aquiris, our team spent about three months preparing for
+our next roles. We studied materials, shaders, UI, and other areas Epic teams
+needed. We shared what we knew and helped each other grow so we could be ready
+to join any Epic team. I later joined the first Aquiris team integrated into
+Fortnite as a Technical UI Designer.
 
-```mermaid
-flowchart TD
-    A[Open tool in Unreal level] --> B[Render character/block to PNG or TIFF]
-    B --> C[Import into Adobe Substance Designer]
-    C --> D[Post-process texture]
-    D --> E[Re-integrate final texture into project]
+```youtube
+https://www.youtube.com/watch?v=86WSmJ022_o
 ```
