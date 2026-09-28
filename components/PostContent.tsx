@@ -24,6 +24,34 @@ export default function PostContent({ html }: { html: string }) {
     const container = containerRef.current;
     if (!container) return;
 
+    const collapsibleTitles = new Set([
+      "Old manual LiveOps pipeline",
+      "New automated LiveOps pipeline",
+    ]);
+    const sectionHeadings = Array.from(container.querySelectorAll("h3"));
+    sectionHeadings.forEach((heading) => {
+      const title = heading.textContent?.trim() ?? "";
+      if (!collapsibleTitles.has(title)) return;
+
+      const details = document.createElement("details");
+      details.className = "content-disclosure";
+      const summary = document.createElement("summary");
+      summary.textContent = title;
+      details.appendChild(summary);
+
+      let sibling = heading.nextSibling;
+      while (
+        sibling &&
+        !(sibling instanceof HTMLElement && /^H[1-6]$/.test(sibling.tagName))
+      ) {
+        const nextSibling = sibling.nextSibling;
+        details.appendChild(sibling);
+        sibling = nextSibling;
+      }
+
+      heading.replaceWith(details);
+    });
+
     const isDark = document.documentElement.classList.contains("dark");
     mermaid.initialize({ startOnLoad: false, theme: isDark ? "dark" : "default" });
 

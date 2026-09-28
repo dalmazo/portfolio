@@ -1,46 +1,71 @@
 ---
 title: "Looney Tunes: World of Mayhem"
-date: "2020-01-01"
+date: "2019-10 – 2022-04"
 type: "project"
-summary: "Technical Artist — automated the LiveOps art pipeline, UI integrations, LUT shaders."
-tags: ["Technical Artist", "Tools", "UI Integration", "Shaders"]
-link: "https://www.youtube.com/watch?v=k-EH3Os"
+summary: "Built a LiveOps art pipeline that cut asset integration from over a day to under 30 minutes."
+tags: ["C#", "Windows command scripting", "Photoshop JavaScript"]
+link: "https://youtu.be/DcvUOqqnc3g?t=60"
 ---
 
 ## Technical Artist
 
-**Tools:** I was hired to work on the LiveOps art integration pipeline, which was
-mostly manual. After identifying steps that could be automated, we built a
-Photoshop script (running alongside actions) to export `.png` files quickly, and
-a pipeline for Asset Graph in Unity to integrate the outcomes. Everything was
-wired together to run on Jenkins using Python: it updates a Google Spreadsheet,
-uploads previews to Google Drive, and opens a GitHub pull request when it
-succeeds.
+### LiveOps art integration
 
-We went from over a day of manual work to a fully autonomous process running in
-under 30 minutes on a cloud-based macOS. By the time I left the project this
-covered ~80% of asset types, and the team later expanded it to all LiveOps
-assets — eliminating the need for a technical artist on this part of the game.
-This is one of the contributions I'm most proud of.
+I joined the project to improve a mostly manual LiveOps art integration
+workflow. I became the main implementer, building about 98% of the pipeline.
+It automated the process shown below, taking it from more than a day of manual
+work to under 30 minutes on a cloud-hosted macOS machine.
 
-I also built small tools for Unity, Jenkins, and Git to help track what's been
-committed to the project and maintain the GitHub page.
+When I left the project, the pipeline covered about 80% of asset types. Most
+manual integration work for those assets was no longer needed. I documented
+the pipeline so the team could build on it after I left, and they later
+expanded it to all LiveOps assets. This is one of the contributions I'm most
+proud of.
 
-**UI Integrations:** revamped boss battles, daily check-ins, and other features.
-
-**Shaders and Materials:** developed a shader function to process LUT across the
-whole project without relying on Unity's post-processing stack (the render
-pipeline was heavily customized, so we integrated the LUT function directly into
-every shader that needed it). This unlocked a wide range of new possibilities
-for characters, effects, and customization across nearly the entire project.
-
-### LiveOps automation pipeline
+### Old manual LiveOps pipeline
 
 ```mermaid
 flowchart TD
-    A[Photoshop script exports PNG assets] --> B[Asset Graph pipeline in Unity]
-    B --> C[Jenkins job runs Python automation]
+    A[Download each file] --> B[Open file in Photoshop]
+    B --> C[Run actions to export assets]
+    C --> D{Assets exported correctly?}
+    D -->|No| E[Fix assets manually]
+    E --> C
+    D -->|Yes| F[Open Unity and import assets]
+    F --> G[Create prefabs and ScriptableObjects]
+    G --> H[Assign asset bundles]
+    H --> I[Review the assets]
+    I --> J[Commit changes and open pull request]
+    I --> K[Upload previews to Google Drive]
+    I --> L[Update game designers' spreadsheet]
+    J --> M[Share pull request links and wait for approval]
+```
+
+### New automated LiveOps pipeline
+
+```mermaid
+flowchart TD
+    A[Photoshop script and actions export PNG assets] --> B[Asset Graph integrates assets in Unity]
+    B --> C[Jenkins runs Python automation]
     C --> D[Update Google Spreadsheet]
     C --> E[Upload previews to Google Drive]
-    C --> F[Open GitHub pull request]
+    C --> G[Open GitHub pull request]
 ```
+
+### Production tools
+
+I also built small tools for Unity, Jenkins, and Git to track project commits
+and maintain the GitHub page.
+
+### UI integrations
+
+I worked on UI integrations for the boss battle revamp, daily check-ins, and
+other features.
+
+### Shaders and materials
+
+I developed a shader function to process LUTs across the project without
+relying on Unity's post-processing stack. Because the render pipeline was
+heavily customized, we integrated the function directly into each shader that
+needed it. This opened up new visual possibilities for characters, effects,
+and customization throughout the game.

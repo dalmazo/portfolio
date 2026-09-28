@@ -26,6 +26,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.content-disclosure {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--foreground) 20%, transparent);
+  border-radius: 0.5rem;
+}
+
+.content-disclosure > summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.content-disclosure[open] > summary {
+  margin-bottom: 1rem;
+}
+
 .mermaid-diagram {
   display: flex;
   justify-content: center;

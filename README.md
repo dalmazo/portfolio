@@ -5,6 +5,9 @@ for the full conventions.
 
 ## Develop
 
+On Windows, double-click `run-local.bat` to start the dev server and open the
+site at http://localhost:3000. Or use the commands below:
+
 ```bash
 npm install
 npm run dev
