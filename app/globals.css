@@ -26,6 +26,47 @@ body {
   font-family: var(--font-sans);
 }
 
+.project-card-item {
+  container-type: inline-size;
+}
+
+.project-card-title {
+  text-shadow: 0 1px 4px rgb(0 0 0 / 22%);
+}
+
+.project-card-title-image {
+  text-shadow: 0 2px 8px rgb(0 0 0 / 70%);
+}
+
+.project-card {
+  height: auto;
+  interpolate-size: allow-keywords;
+  transition: height 300ms ease, background-color 200ms ease;
+}
+
+.project-card-image-layer {
+  transition: opacity 200ms ease;
+}
+
+.project-card:not(.is-expanded) .project-card-image-layer {
+  opacity: 0;
+}
+
+.project-card.is-expanded {
+  height: 56.25cqi;
+  z-index: 10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    transition: none;
+  }
+
+  .project-card-image-layer {
+    transition: none;
+  }
+}
+
 .sidebar-about .about-callout {
   border: 0;
   padding: 0;
