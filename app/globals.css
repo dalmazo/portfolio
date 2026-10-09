@@ -66,16 +66,6 @@ h6,
   padding-block: 1.5rem;
 }
 
-.dark .contact-scene {
-  --card-solid: #f4efe6;
-  --card-fg: #141416;
-  --card-accent: #4656d6;
-  --card-glow-a: rgb(110 130 255 / 0.26);
-  --card-glow-b: rgb(255 150 110 / 0.3);
-  --card-shadow: 0 34px 70px -24px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(255 255 255 / 0.06),
-    0 0 60px -20px rgb(150 170 255 / 0.25);
-}
-
 @keyframes contact-float {
   0%,
   100% {
