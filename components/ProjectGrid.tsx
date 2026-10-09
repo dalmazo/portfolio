@@ -18,7 +18,23 @@ const projectImages: Record<string, string> = {
   "project-wonderbox": "/images/wonderbox.jpg",
 };
 
-export default function ProjectGrid({ projects }: { projects: PostMeta[] }) {
+type ProjectGridProps = {
+  projects: PostMeta[];
+  heading?: string;
+  headingLevel?: "h1" | "h2";
+  hrefPrefix?: string;
+  compact?: boolean;
+  showSummaries?: boolean;
+};
+
+export default function ProjectGrid({
+  projects,
+  heading = "Projects",
+  headingLevel = "h1",
+  hrefPrefix = "/projects",
+  compact = false,
+  showSummaries = false,
+}: ProjectGridProps) {
   const listRef = useRef<HTMLUListElement>(null);
   const dragStateRef = useRef<{
     startX: number;
@@ -125,15 +141,20 @@ export default function ProjectGrid({ projects }: { projects: PostMeta[] }) {
     list.scrollBy({ left: direction * distance, behavior });
   };
 
+  const Heading = headingLevel;
+  const cardSizeClass = compact
+    ? "h-[min(30svh,58.5vw)] w-[min(24svh,46.8vw)]"
+    : "h-[min(50svh,97.5vw)] w-[min(40svh,78vw)]";
+
   return (
     <div>
       <div className="mb-6 flex items-center justify-between px-4 lg:relative lg:left-1/2 lg:w-[calc(71vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2">
-        <h1 className="text-2xl font-semibold">Projects</h1>
+        <Heading className="text-2xl font-semibold">{heading}</Heading>
         <div className="flex gap-2">
           <button
             type="button"
-            aria-label="Scroll projects left"
-            title="Scroll left"
+            aria-label={`Scroll ${heading.toLowerCase()} left`}
+            title={`Scroll ${heading.toLowerCase()} left`}
             disabled={!canScrollLeft}
             onClick={() => scrollProjects(-1)}
             className="flex h-9 w-[3.6rem] items-center justify-center rounded-md border border-black/15 text-lg leading-none transition-colors hover:bg-black/5 disabled:cursor-default disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:border-white/20 dark:hover:bg-white/10"
@@ -142,8 +163,8 @@ export default function ProjectGrid({ projects }: { projects: PostMeta[] }) {
           </button>
           <button
             type="button"
-            aria-label="Scroll projects right"
-            title="Scroll right"
+            aria-label={`Scroll ${heading.toLowerCase()} right`}
+            title={`Scroll ${heading.toLowerCase()} right`}
             disabled={!canScrollRight}
             onClick={() => scrollProjects(1)}
             className="flex h-9 w-[3.6rem] items-center justify-center rounded-md border border-black/15 text-lg leading-none transition-colors hover:bg-black/5 disabled:cursor-default disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:border-white/20 dark:hover:bg-white/10"
@@ -165,9 +186,9 @@ export default function ProjectGrid({ projects }: { projects: PostMeta[] }) {
           const imageSrc = projectImages[project.slug];
 
           return (
-            <li key={project.slug} className="aspect-[4/5] h-[min(50svh,97.5vw)] w-[min(40svh,78vw)] min-w-0 flex-none snap-start">
+            <li key={project.slug} className={`aspect-[4/5] ${cardSizeClass} min-w-0 flex-none snap-start`}>
               <Link
-                href={`/posts/${project.slug}`}
+                href={`${hrefPrefix}/${project.slug}`}
                 draggable={false}
                 className="project-card group flex h-full flex-col text-current no-underline transition-transform duration-300 ease-out hover:-translate-y-4 motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
               >
@@ -191,7 +212,14 @@ export default function ProjectGrid({ projects }: { projects: PostMeta[] }) {
                     />
                   </span>
                 ) : (
-                  <span className="mb-3 min-h-0 flex-1 rounded-md bg-black/5 dark:bg-white/5" />
+                  <span className={`mb-3 min-h-0 flex-1 rounded-md bg-black/5 dark:bg-white/5 ${showSummaries ? "flex flex-col p-4" : ""}`}>
+                    {showSummaries && (
+                      <>
+                        <time className="text-xs opacity-60">{project.date}</time>
+                        <span className="mt-3 text-sm leading-relaxed">{project.summary}</span>
+                      </>
+                    )}
+                  </span>
                 )}
               </Link>
             </li>

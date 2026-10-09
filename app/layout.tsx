@@ -30,7 +30,7 @@ const finlandicaText = Finlandica_Text({
 
 export const metadata: Metadata = {
   title: "Rafael Dalmazo - Portfolio",
-  description: "Technical Artist portfolio - projects, blog and contact.",
+  description: "Technical Artist portfolio - projects, notes and contact.",
 };
 
 // Applied before hydration so the theme is correct on first paint.
@@ -73,7 +73,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             </div>
             <nav className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm lg:mt-20 lg:flex-col lg:items-end lg:gap-4">
               <Link href="/projects">Projects</Link>
-              <Link href="/blog">Blog</Link>
+              <Link href="/blog">Notes</Link>
               <Link href="/contact">Contact</Link>
             </nav>
             <div className="mt-6 self-end lg:mt-auto">
