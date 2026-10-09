@@ -1,9 +1,9 @@
 import PostContent from "@/components/PostContent";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
+import { getAllNoteSlugs, getAllPostSlugs, getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
 export default async function PostArticle({ slug }: { slug: string }) {
-  if (!getAllPostSlugs().includes(slug)) notFound();
+  if (![...getAllPostSlugs(), ...getAllNoteSlugs()].includes(slug)) notFound();
 
   const post = await getPostBySlug(slug);
 

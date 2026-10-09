@@ -1,5 +1,6 @@
 import ContactCard from "@/components/ContactCard";
 import ProjectGrid from "@/components/ProjectGrid";
+import ThemeToggle from "@/components/ThemeToggle";
 import { getPostsByType } from "@/lib/posts";
 
 export default function HomePage() {
@@ -32,14 +33,17 @@ export default function HomePage() {
         </section>
         <section>
           <h2 className="text-xl">Connect</h2>
-          <a
-            href="https://www.linkedin.com/in/dalmazo/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 block w-fit text-2xl text-black/55 underline underline-offset-4 transition-colors hover:text-black dark:text-white/55 dark:hover:text-white"
-          >
-            LinkedIn
-          </a>
+          <div className="mt-1 flex items-center justify-between">
+            <a
+              href="https://www.linkedin.com/in/dalmazo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-fit text-2xl text-black/55 underline underline-offset-4 transition-colors hover:text-black dark:text-white/55 dark:hover:text-white"
+            >
+              LinkedIn
+            </a>
+            <ThemeToggle />
+          </div>
         </section>
       </footer>
     </div>

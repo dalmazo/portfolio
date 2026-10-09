@@ -29,10 +29,11 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      aria-label="Toggle dark/light theme"
-      className="rounded-md border border-black/15 px-3 py-1 text-sm transition-colors hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:border-white/20 dark:hover:bg-white/10"
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+      title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+      className="grid h-9 w-[3.6rem] place-items-center rounded-md border border-black/15 text-xl leading-none transition-colors hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:border-white/20 dark:hover:bg-white/10"
     >
-      {theme === "dark" ? "Light" : "Dark"}
+      <span aria-hidden="true">{theme === "dark" ? "☼" : "☾"}</span>
     </button>
   );
 }

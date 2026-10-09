@@ -60,7 +60,7 @@ h6,
   --card-accent: #a9bcff;
   --card-glow-a: rgb(120 140 255 / 0.34);
   --card-glow-b: rgb(255 120 200 / 0.2);
-  --card-shadow: 0 34px 60px -24px rgb(0 0 0 / 0.6), 0 14px 26px -14px rgb(0 0 0 / 0.45);
+  --card-shadow: 0 34px 60px -24px rgba(79, 28, 65, 0.4), 0 14px 26px -14px rgb(0 0 0 / 0.45);
   container-type: inline-size;
   perspective: 1400px;
   padding-block: 1.5rem;

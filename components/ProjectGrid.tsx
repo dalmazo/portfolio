@@ -16,6 +16,11 @@ const projectImages: Record<string, string> = {
   "project-looney-tunes": "/images/ltwom.jpg",
   "project-pk-xd": "/images/pk-xd.png",
   "project-wonderbox": "/images/wonderbox.jpg",
+  "SDFs": "/images/notes/SDF_Distance_05.png",
+};
+
+const projectVideos: Record<string, string> = {
+  squircle: "/videos/squircle.mp4"
 };
 
 type ProjectGridProps = {
@@ -143,8 +148,9 @@ export default function ProjectGrid({
 
   const Heading = headingLevel;
   const cardSizeClass = compact
-    ? "h-[min(30svh,58.5vw)] w-[min(24svh,46.8vw)]"
+    ? "h-[min(30svh,58.5vw)] w-[min(30svh,58.5vw)]"
     : "h-[min(50svh,97.5vw)] w-[min(40svh,78vw)]";
+  const cardAspectClass = compact ? "aspect-square" : "aspect-[4/5]";
 
   return (
     <div>
@@ -184,9 +190,10 @@ export default function ProjectGrid({
       >
         {projects.map((project, index) => {
           const imageSrc = projectImages[project.slug];
+          const videoSrc = projectVideos[project.slug];
 
           return (
-            <li key={project.slug} className={`aspect-[4/5] ${cardSizeClass} min-w-0 flex-none snap-start`}>
+            <li key={project.slug} className={`${cardAspectClass} ${cardSizeClass} min-w-0 flex-none snap-start`}>
               <Link
                 href={`${hrefPrefix}/${project.slug}`}
                 draggable={false}
@@ -195,7 +202,24 @@ export default function ProjectGrid({
                 <span className="project-card-title mb-3 block shrink-0 text-[0.8rem] leading-tight">
                   {project.title}
                 </span>
-                {imageSrc ? (
+                {videoSrc ? (
+                  <span className="project-card-image relative mb-3 min-h-0 flex-1 overflow-hidden rounded-md bg-black/5 dark:bg-white/5">
+                    <video
+                      autoPlay
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                    >
+                      <source src={videoSrc} type="video/mp4" />
+                    </video>
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20"
+                    />
+                  </span>
+                ) : imageSrc ? (
                   <span className="project-card-image relative mb-3 min-h-0 flex-1 overflow-hidden rounded-md bg-black/5 dark:bg-white/5">
                     <Image
                       src={imageSrc}

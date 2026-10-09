@@ -4,7 +4,7 @@ Source of truth for how this portfolio site works and is maintained.
 
 ## Rule 1 — Content-driven pages
 All pages (About, Projects, Blog posts, Contact) are generated from Markdown files
-in the `posts/` folder. Each file needs YAML front-matter:
+in the `posts/` and `notes/` folders. Each file needs YAML front-matter:
 
 ```md
 ---
@@ -17,7 +17,8 @@ summary: "One-line description shown in listings."
 Body content in Markdown/MDX goes here.
 ```
 
-Adding a new page = adding a new `.md` file to `posts/`. No code changes required.
+Add projects and site pages to `posts/`, and add writing to `notes/`. No code
+changes are required.
 
 ## Rule 2 — Simple dark/white theme
 - Two themes only: dark and light. No extra color schemes.
@@ -83,7 +84,8 @@ The renderer replaces it with an HTML5 `<video controls>` player.
 - Deployed as a GitHub Pages **project page** at `https://<username>.github.io/portfolio`,
   via a GitHub Actions workflow that builds on every push to `main` and publishes the
   static export automatically.
-- To publish a new post: add/edit a `.md` file in `posts/`, commit, push — the site
+- To publish a new project or site page: add/edit a `.md` file in `posts/`.
+- To publish a new note: add/edit a `.md` file in `notes/`, commit, push — the site
   rebuilds and deploys itself.
 
 ## Tech stack summary
@@ -91,7 +93,7 @@ The renderer replaces it with an HTML5 `<video controls>` player.
 |-------------------|-------------------------------------------|
 | Framework         | Next.js (App Router, TypeScript, static export) |
 | Styling           | Tailwind CSS                              |
-| Content           | Markdown/MDX files in `posts/` + front-matter |
+| Content           | Markdown/MDX files in `posts/` and `notes/` + front-matter |
 | Diagrams          | Mermaid, authored via plain-English prompt to Copilot |
 | Theme             | Dark/white toggle, localStorage + OS fallback |
 | Hosting           | GitHub Pages (project page), GitHub Actions deploy |

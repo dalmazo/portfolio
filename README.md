@@ -17,7 +17,7 @@ Open http://localhost:3000.
 
 ## Add content
 
-Add a `.md` file to `posts/` with front-matter:
+Add a `.md` file to `posts/` or `notes/` with front-matter:
 
 ```md
 ---
@@ -31,6 +31,10 @@ Body content here.
 ```
 
 No code changes needed — the site picks it up automatically.
+
+Use `posts/` for projects and site pages (`about`, `project`, `contact`), and
+`notes/` for writing (`blog`). Notes are listed at `/blog` and are available at
+`/notes/<slug>`.
 
 ## Add a flowchart
 

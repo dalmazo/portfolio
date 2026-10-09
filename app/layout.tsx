@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Archivo_Black, Finlandica_Text, Geist_Mono, Noto_Sans } from "next/font/google";
-import Link from "next/link";
-import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -52,21 +50,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full">
         <div className="min-h-screen">
-          <header className="border-b border-black/10 dark:border-white/10">
-            <div className="mx-auto flex w-full max-w-[88rem] flex-wrap items-center justify-between gap-x-8 gap-y-4 px-6 py-4 lg:px-8">
-              <Link href="/" className="site-title text-base font-normal">
-                Rafael Dalmazo
-              </Link>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                <nav aria-label="Main navigation" className="flex flex-wrap gap-x-5 gap-y-3 text-sm">
-                  <Link href="/projects">Projects</Link>
-                  <Link href="/blog">Notes</Link>
-                  <Link href="/contact">Contact</Link>
-                </nav>
-                <ThemeToggle />
-              </div>
-            </div>
-          </header>
           <main className="flex min-w-0 justify-center px-6 py-8 lg:px-8 lg:py-10">
             <div className="w-full max-w-[45rem]">{children}</div>
           </main>

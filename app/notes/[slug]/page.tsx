@@ -1,8 +1,8 @@
 import PostArticle from "@/components/PostArticle";
-import { getPostsByType } from "@/lib/posts";
+import { getAllNoteSlugs } from "@/lib/posts";
 
 export function generateStaticParams() {
-  return getPostsByType("blog").map(({ slug }) => ({ slug }));
+  return getAllNoteSlugs().map((slug) => ({ slug }));
 }
 
 export default async function NotesArticlePage({

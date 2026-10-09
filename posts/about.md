@@ -12,3 +12,10 @@ summary: "Technical Artist from São Paulo, Brazil."
 <p>Building UI materials and Blueprints, writing pipeline tools in Python and C++, and helping teams ship LiveOps content faster.</p>
 </div>
 </aside>
+
+
+
+
+```video
+/videos/squircle.mp4
+```
