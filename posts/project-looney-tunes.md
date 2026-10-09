@@ -1,5 +1,5 @@
 ---
-title: "Looney Tunes: World of Mayhem"
+title: "Looney Tunes: WoM"
 date: "2019-10 – 2022-04"
 type: "project"
 summary: "Built a LiveOps art pipeline that cut asset integration from over a day to under 30 minutes."

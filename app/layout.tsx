@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Noto_Sans } from "next/font/google";
+import { Archivo_Black, Finlandica_Text, Geist_Mono, Noto_Sans } from "next/font/google";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import PostContent from "@/components/PostContent";
@@ -14,6 +14,18 @@ const geistMono = Geist_Mono({
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
   subsets: ["latin"],
+});
+
+const archivoBlack = Archivo_Black({
+  variable: "--font-archivo-black",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const finlandicaText = Finlandica_Text({
+  variable: "--font-finlandica-text",
+  subsets: ["latin"],
+  weight: "600",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +50,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${notoSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${notoSans.variable} ${archivoBlack.variable} ${finlandicaText.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
@@ -50,7 +62,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           </main>
           <aside className="order-first flex flex-col border-b border-black/10 px-6 py-5 dark:border-white/10 lg:order-last lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-l lg:px-8 lg:py-6">
             <div className="text-right">
-              <Link href="/" className="text-base font-semibold">
+              <Link href="/" className="site-title text-base font-normal">
                 Rafael Dalmazo
               </Link>
               {aboutPost && (

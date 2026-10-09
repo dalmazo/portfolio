@@ -26,43 +26,35 @@ body {
   font-family: var(--font-sans);
 }
 
-.project-card-item {
-  container-type: inline-size;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.site-title,
+.project-card-title {
+  font-family: var(--font-archivo-black);
+  font-weight: 400;
 }
 
 .project-card-title {
-  text-shadow: 0 1px 4px rgb(0 0 0 / 22%);
+  font-family: var(--font-finlandica-text);
+  font-weight: 600;
 }
 
-.project-card-title-image {
-  text-shadow: 0 2px 8px rgb(0 0 0 / 70%);
+.project-card-list {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.project-card {
-  height: auto;
-  interpolate-size: allow-keywords;
-  transition: height 300ms ease, background-color 200ms ease;
-}
-
-.project-card-image-layer {
-  transition: opacity 200ms ease;
-}
-
-.project-card:not(.is-expanded) .project-card-image-layer {
-  opacity: 0;
-}
-
-.project-card.is-expanded {
-  height: 56.25cqi;
-  z-index: 10;
+.project-card-list::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card {
-    transition: none;
-  }
-
-  .project-card-image-layer {
+  .project-card-image img,
+  .project-card-image > span {
     transition: none;
   }
 }
