@@ -127,27 +127,30 @@ export default function ProjectGrid({ projects }: { projects: PostMeta[] }) {
 
   return (
     <div>
-      <div className="mb-3 flex justify-end gap-2">
-        <button
-          type="button"
-          aria-label="Scroll projects left"
-          title="Scroll left"
-          disabled={!canScrollLeft}
-          onClick={() => scrollProjects(-1)}
-          className="flex h-9 w-[3.6rem] items-center justify-center rounded-md border border-black/15 text-lg leading-none transition-colors hover:bg-black/5 disabled:cursor-default disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:border-white/20 dark:hover:bg-white/10"
-        >
-          <span aria-hidden="true">&larr;</span>
-        </button>
-        <button
-          type="button"
-          aria-label="Scroll projects right"
-          title="Scroll right"
-          disabled={!canScrollRight}
-          onClick={() => scrollProjects(1)}
-          className="flex h-9 w-[3.6rem] items-center justify-center rounded-md border border-black/15 text-lg leading-none transition-colors hover:bg-black/5 disabled:cursor-default disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:border-white/20 dark:hover:bg-white/10"
-        >
-          <span aria-hidden="true">&rarr;</span>
-        </button>
+      <div className="mb-6 flex items-center justify-between px-4 lg:relative lg:left-1/2 lg:w-[calc(71vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2">
+        <h1 className="text-2xl font-semibold">Projects</h1>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            aria-label="Scroll projects left"
+            title="Scroll left"
+            disabled={!canScrollLeft}
+            onClick={() => scrollProjects(-1)}
+            className="flex h-9 w-[3.6rem] items-center justify-center rounded-md border border-black/15 text-lg leading-none transition-colors hover:bg-black/5 disabled:cursor-default disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:border-white/20 dark:hover:bg-white/10"
+          >
+            <span aria-hidden="true">&larr;</span>
+          </button>
+          <button
+            type="button"
+            aria-label="Scroll projects right"
+            title="Scroll right"
+            disabled={!canScrollRight}
+            onClick={() => scrollProjects(1)}
+            className="flex h-9 w-[3.6rem] items-center justify-center rounded-md border border-black/15 text-lg leading-none transition-colors hover:bg-black/5 disabled:cursor-default disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:border-white/20 dark:hover:bg-white/10"
+          >
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
       </div>
       <ul
         ref={listRef}
@@ -156,7 +159,7 @@ export default function ProjectGrid({ projects }: { projects: PostMeta[] }) {
         onMouseUp={handleMouseEnd}
         onMouseLeave={handleMouseEnd}
         onClickCapture={handleClickCapture}
-        className="project-card-list -mt-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 pb-4 pt-4 cursor-grab select-none active:cursor-grabbing lg:relative lg:left-1/2 lg:w-[calc(71vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2"
+        className="project-card-list flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 pb-4 pt-4 cursor-grab select-none active:cursor-grabbing lg:relative lg:left-1/2 lg:w-[calc(71vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2"
       >
         {projects.map((project, index) => {
           const imageSrc = projectImages[project.slug];
