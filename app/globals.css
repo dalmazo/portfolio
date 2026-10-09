@@ -52,6 +52,275 @@ h6,
   display: none;
 }
 
+/* Contact card: standard 3.5in x 2in business card, sized in cqw so type scales with it. */
+.contact-scene {
+  --card-solid: #101013;
+  --card-fg: #f5f3ee;
+  --card-muted: color-mix(in srgb, var(--card-fg) 64%, transparent);
+  --card-accent: #a9bcff;
+  --card-glow-a: rgb(120 140 255 / 0.34);
+  --card-glow-b: rgb(255 120 200 / 0.2);
+  --card-shadow: 0 34px 60px -24px rgb(0 0 0 / 0.6), 0 14px 26px -14px rgb(0 0 0 / 0.45);
+  container-type: inline-size;
+  perspective: 1400px;
+  padding-block: 1.5rem;
+}
+
+.dark .contact-scene {
+  --card-solid: #f4efe6;
+  --card-fg: #141416;
+  --card-accent: #4656d6;
+  --card-glow-a: rgb(110 130 255 / 0.26);
+  --card-glow-b: rgb(255 150 110 / 0.3);
+  --card-shadow: 0 34px 70px -24px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(255 255 255 / 0.06),
+    0 0 60px -20px rgb(150 170 255 / 0.25);
+}
+
+@keyframes contact-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -0.5rem;
+  }
+}
+
+.contact-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 7 / 4;
+  border-radius: 3.2cqw;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  rotate: -3deg;
+  animation: contact-float 7s ease-in-out infinite;
+  transition: transform 260ms ease-out, rotate 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    scale 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.contact-card:hover,
+.contact-card:focus-visible {
+  rotate: -1deg;
+  scale: 1.03;
+  animation-play-state: paused;
+}
+
+.contact-card-inner {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  transition: transform 900ms cubic-bezier(0.2, 0.85, 0.2, 1);
+}
+
+.contact-card.is-flipped .contact-card-inner {
+  transform: rotateY(180deg);
+}
+
+.contact-face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: inherit;
+  color: var(--card-fg);
+  background:
+    radial-gradient(120% 90% at 100% 0%, var(--card-glow-a), transparent 55%),
+    radial-gradient(90% 80% at 0% 100%, var(--card-glow-b), transparent 55%),
+    var(--card-solid);
+  box-shadow: var(--card-shadow);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Iridescent hairline edge */
+.contact-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--card-fg) 55%, transparent),
+    color-mix(in srgb, var(--card-fg) 6%, transparent) 40%,
+    rgb(150 175 255 / 0.55) 70%,
+    rgb(255 160 220 / 0.55)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.contact-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(currentColor 1px, transparent 1.3px);
+  background-size: 3.2cqw 3.2cqw;
+  opacity: 0.12;
+  -webkit-mask-image: linear-gradient(to bottom left, #000, transparent 62%);
+  mask-image: linear-gradient(to bottom left, #000, transparent 62%);
+  pointer-events: none;
+}
+
+.contact-back {
+  display: flex;
+  transform: rotateY(180deg);
+}
+
+.contact-front-body {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 7.5cqw;
+}
+
+.contact-name {
+  font-family: var(--font-archivo-black);
+  font-size: 8.4cqw;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.contact-role {
+  margin-top: 2.4cqw;
+  font-family: var(--font-finlandica-text);
+  font-size: 4.2cqw;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--card-accent);
+}
+
+.contact-divider {
+  display: block;
+  width: 9cqw;
+  height: 1px;
+  margin-block: 3.6cqw;
+  background: color-mix(in srgb, var(--card-fg) 35%, transparent);
+}
+
+.contact-phrase {
+  max-width: 76cqw;
+  font-size: 3.5cqw;
+  line-height: 1.4;
+  color: var(--card-muted);
+}
+
+.contact-photo {
+  position: relative;
+  flex: 0 0 33%;
+  height: 100%;
+}
+
+.contact-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 55%, var(--card-solid));
+}
+
+.contact-back-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5.5cqw 6cqw 5.5cqw 3cqw;
+}
+
+.contact-bar {
+  display: block;
+  width: 8cqw;
+  height: 0.7cqw;
+  margin-bottom: 3.2cqw;
+  border-radius: 999px;
+  background: var(--card-accent);
+}
+
+.contact-lead {
+  margin-bottom: 2.6cqw;
+  font-family: var(--font-finlandica-text);
+  font-size: 4.2cqw;
+  font-weight: 600;
+  line-height: 1.22;
+}
+
+.contact-body {
+  font-size: 3.1cqw;
+  line-height: 1.5;
+  color: var(--card-muted);
+}
+
+.contact-flip {
+  position: absolute;
+  top: 4.5cqw;
+  right: 4.5cqw;
+  z-index: 3;
+  display: grid;
+  width: 6.5cqw;
+  height: 6.5cqw;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--card-fg) 28%, transparent);
+  border-radius: 999px;
+  color: var(--card-muted);
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.contact-card:hover .contact-flip {
+  transform: rotate(180deg);
+}
+
+.contact-sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background:
+    radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgb(255 255 255 / 0.3), transparent 42%),
+    linear-gradient(
+      115deg,
+      transparent calc(var(--gx, 50%) - 25%),
+      rgb(160 190 255 / 0.2) var(--gx, 50%),
+      rgb(255 170 230 / 0.18) calc(var(--gx, 50%) + 8%),
+      transparent calc(var(--gx, 50%) + 30%)
+    );
+  mix-blend-mode: overlay;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.contact-card:hover .contact-sheen,
+.contact-card:focus-visible .contact-sheen {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-card {
+    animation: none;
+    transition: none;
+  }
+
+  .contact-card-inner,
+  .contact-flip,
+  .contact-sheen {
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .project-card-image img,
   .project-card-image > span {

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Archivo_Black, Finlandica_Text, Geist_Mono, Noto_Sans } from "next/font/google";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
-import PostContent from "@/components/PostContent";
-import { getPostBySlug, getPostsByType } from "@/lib/posts";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -42,10 +40,7 @@ const themeInitScript = `
 })();
 `;
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const [about] = getPostsByType("about");
-  const aboutPost = about ? await getPostBySlug(about.slug) : null;
-
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
@@ -56,30 +51,25 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-full">
-        <div className="flex min-h-screen flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_29%]">
-          <main className="order-last flex min-w-0 justify-center px-6 py-8 lg:order-first lg:px-8 lg:py-10">
-            <div className="w-full max-w-[45rem]">{children}</div>
-          </main>
-          <aside className="order-first flex flex-col border-b border-black/10 px-6 py-5 dark:border-white/10 lg:order-last lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-l lg:px-8 lg:py-6">
-            <div className="text-right">
+        <div className="min-h-screen">
+          <header className="border-b border-black/10 dark:border-white/10">
+            <div className="mx-auto flex w-full max-w-[88rem] flex-wrap items-center justify-between gap-x-8 gap-y-4 px-6 py-4 lg:px-8">
               <Link href="/" className="site-title text-base font-normal">
                 Rafael Dalmazo
               </Link>
-              {aboutPost && (
-                <div className="sidebar-about mt-3">
-                  <PostContent html={aboutPost.contentHtml} />
-                </div>
-              )}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                <nav aria-label="Main navigation" className="flex flex-wrap gap-x-5 gap-y-3 text-sm">
+                  <Link href="/projects">Projects</Link>
+                  <Link href="/blog">Notes</Link>
+                  <Link href="/contact">Contact</Link>
+                </nav>
+                <ThemeToggle />
+              </div>
             </div>
-            <nav className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm lg:mt-20 lg:flex-col lg:items-end lg:gap-4">
-              <Link href="/projects">Projects</Link>
-              <Link href="/blog">Notes</Link>
-              <Link href="/contact">Contact</Link>
-            </nav>
-            <div className="mt-6 self-end lg:mt-auto">
-              <ThemeToggle />
-            </div>
-          </aside>
+          </header>
+          <main className="flex min-w-0 justify-center px-6 py-8 lg:px-8 lg:py-10">
+            <div className="w-full max-w-[45rem]">{children}</div>
+          </main>
         </div>
       </body>
     </html>

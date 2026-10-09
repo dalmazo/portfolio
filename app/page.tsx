@@ -1,3 +1,4 @@
+import ContactCard from "@/components/ContactCard";
 import ProjectGrid from "@/components/ProjectGrid";
 import { getPostsByType } from "@/lib/posts";
 
@@ -7,6 +8,7 @@ export default function HomePage() {
 
   return (
     <div className="space-y-16">
+      <ContactCard />
       {projects.length > 0 && <ProjectGrid projects={projects} />}
       {blogPosts.length > 0 && (
         <ProjectGrid
@@ -18,7 +20,7 @@ export default function HomePage() {
           showSummaries
         />
       )}
-      <footer className="grid grid-cols-1 gap-8 border-t border-black/10 pt-6 dark:border-white/10 sm:grid-cols-2 lg:relative lg:left-1/2 lg:w-[calc(71vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2">
+      <footer className="grid grid-cols-1 gap-8 border-t border-black/10 pt-6 dark:border-white/10 sm:grid-cols-2 lg:relative lg:left-1/2 lg:w-[calc(100vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2">
         <section>
           <h2 className="text-xl">Hello?</h2>
           <a

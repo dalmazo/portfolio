@@ -148,7 +148,7 @@ export default function ProjectGrid({
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between px-4 lg:relative lg:left-1/2 lg:w-[calc(71vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2">
+      <div className="mb-6 flex items-center justify-between px-4 lg:relative lg:left-1/2 lg:w-[calc(100vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2">
         <Heading className="text-2xl font-semibold">{heading}</Heading>
         <div className="flex gap-2">
           <button
@@ -180,7 +180,7 @@ export default function ProjectGrid({
         onMouseUp={handleMouseEnd}
         onMouseLeave={handleMouseEnd}
         onClickCapture={handleClickCapture}
-        className="project-card-list flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 pb-4 pt-4 cursor-grab select-none active:cursor-grabbing lg:relative lg:left-1/2 lg:w-[calc(71vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2"
+        className="project-card-list flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 pb-4 pt-4 cursor-grab select-none active:cursor-grabbing lg:relative lg:left-1/2 lg:w-[calc(100vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2"
       >
         {projects.map((project, index) => {
           const imageSrc = projectImages[project.slug];
