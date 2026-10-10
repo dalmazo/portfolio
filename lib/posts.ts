@@ -13,6 +13,14 @@ const contentDirectories = {
 export type PostType = "about" | "project" | "blog" | "contact";
 export type ContentCollection = keyof typeof contentDirectories;
 
+const projectOrder = [
+  "project-blooms",
+  "project-fortnite",
+  "project-looney-tunes",
+  "project-wonderbox",
+  "project-pk-xd",
+];
+
 export interface PostMeta {
   slug: string;
   title: string;
@@ -64,7 +72,15 @@ export function getAllPostsMeta(): PostMeta[] {
 }
 
 export function getPostsByType(type: PostType): PostMeta[] {
-  return getAllPostsMeta().filter((post) => post.type === type);
+  const posts = getAllPostsMeta().filter((post) => post.type === type);
+  if (type !== "project") return posts;
+
+  return posts.sort((a, b) => {
+    const aIndex = projectOrder.indexOf(a.slug);
+    const bIndex = projectOrder.indexOf(b.slug);
+    return (aIndex === -1 ? projectOrder.length : aIndex) -
+      (bIndex === -1 ? projectOrder.length : bIndex);
+  });
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
