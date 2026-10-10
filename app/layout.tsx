@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo_Black, Finlandica_Text, Geist_Mono, Noto_Sans } from "next/font/google";
+import HomeLink from "@/components/HomeLink";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -51,7 +52,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full">
         <div className="min-h-screen">
           <main className="flex min-w-0 justify-center px-6 py-8 lg:px-8 lg:py-10">
-            <div className="w-full max-w-[45rem]">{children}</div>
+            <div className="w-full max-w-[45rem]">
+              <HomeLink />
+              {children}
+            </div>
           </main>
         </div>
       </body>

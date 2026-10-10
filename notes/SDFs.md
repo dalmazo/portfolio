@@ -1,5 +1,5 @@
 ---
-title: "Tutorial sessions: SDFs"
+title: "Tutorial sessions: SDFs Part 1"
 date: "2026-10-08"
 type: "blog"
 summary: "What are SDFs, and why do I need to know they exist?"
