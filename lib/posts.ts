@@ -86,7 +86,8 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   const processed = await remark().use(remarkGfm).use(html, { sanitize: false }).process(markdown);
   const contentHtml = processed
     .toString()
-    .replace(/(<img\b[^>]*\bsrc=")\/(?!\/)/g, `$1${basePath}/`);
+    .replace(/(<img\b[^>]*\bsrc=")\/(?!\/)/g, `$1${basePath}/`)
+    .replace(/(<a\b[^>]*\bhref=")\/(?!\/)/g, `$1${basePath}/`);
   return {
     slug,
     contentHtml,

@@ -1,6 +1,6 @@
 ---
 title: "Fortnite"
-date: "2023-05 – 2025-06"
+date: "May 2023 – Jun 2025"
 type: "project"
 cover: "/images/fortnite.jpg"
 order: 2
@@ -14,7 +14,7 @@ link: "https://www.fortnite.com"
 **Epic Games**
 
 Two years as Fortnite's Technical UI Designer: rebuilt the battle pass
-system on MVVM (2× passes → 8× passes per quarter) and shipped UI for
+system on MVVM (from 2 to 8 passes per quarter) and shipped UI for
 Jujutsu Kaisen, TMNT, Avatar, and more.
 
 Day-to-day, that meant working closely with other UI Artists to get every

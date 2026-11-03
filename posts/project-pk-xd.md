@@ -1,11 +1,11 @@
 ---
 title: "PK XD"
-date: "2022-04 – 2022-08"
+date: "Apr 2022 – Aug 2022"
 type: "project"
 cover: "/images/pk-xd.png"
 order: 5
 summary: "UI Technical Artist — LiveOps integrations and communication-through-emotes feature."
-tags: ["UI", "Technical Artist"]
+tags: ["Unity", "TextMeshPro", "Addressables", "Figma"]
 link: "https://www.playpkxd.com"
 ---
 

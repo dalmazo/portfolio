@@ -1,15 +1,17 @@
 ---
 title: "Wonderbox"
-date: "2022-09 – 2023-06"
+date: "Sep 2022 – Jun 2023"
 type: "project"
 cover: "/images/wonderbox.jpg"
 order: 4
 summary: "Led development of an Unreal tool that turns SVGs into configurable SDF, MSDF, and MTSDF textures."
-tags: ["Technical Artist", "Tools", "Blueprint"]
+tags: ["Unreal Engine", "C++", "Unreal Python", "Blueprint", "msdfgen", "Substance Designer"]
 link: "https://www.aquiris.com.br/presskit/games/wonderbox"
 ---
 
 ## Technical Artist (Tools)
+
+**Aquiris**
 
 During six months on Wonderbox, I contributed to four major technical-art
 efforts:

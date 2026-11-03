@@ -1,5 +1,5 @@
 ---
-title: "Tutorial sessions: SDFs Part 1"
+title: "Tutorial: Signed Distance Fields, Part 1"
 date: "2026-10-08"
 type: "blog"
 cover: "/images/notes/SDF_Distance_05.png"
@@ -38,34 +38,35 @@ We can use it to make a circle:
 
 
 ![I told you it's a circle!](/images/notes/SDF_Ugly_Circle.png)
-![And it looks jagged](/images/notes/SDF_Circle_PreAA.png)
+![The circle mask after Step](/images/notes/SDF_Circle_PreAA.png)
 >`Step(0.5, distance)` compares that distance to the circle's radius and turns it into a sharp inside-or-outside result. Since pixels at the edge have to switch abruptly from one to the other, the circle can look jagged.
 
 But it still looks jagged:
-![Jagged AF](/images/notes/SDF_Circle_Corner_Jagged.png)
+![Close-up of the jagged edge](/images/notes/SDF_Circle_Corner_Jagged.png)
 
 Let's try to fix it with another node:
 ![Less jagged but still jagged](/images/notes/SDF_Circle_Still_Jagged.png)
 
 
 This smooth step gives us a smoother result, but the jagged edges don't disappear entirely.
-Although It can be good enough in many cases...
-![Still Jagged](/images/notes/SDF_Circle_Fake.png)
+Although it can be good enough in many cases...
+![SmoothStep result at normal size](/images/notes/SDF_Circle_Fake.png)
 >`SmoothStep` makes the switch gradual, so the edge looks smoother, but it doesn't account for the size of the pixels. 
 
 But if we want a pixel-perfect circle, we can make an MF_UI_AA based on [Unity's Anti-Aliasing Node](https://docs.unity3d.com/Packages/com.unity.shadergraph@17.2/manual/Shader-Graph-Sample-UGUI-Shaders-Subgraph-nodes.html#anti-aliasing), found in the Shader Graph 17.2.0 UGUI Shaders example:
 ![MF_UI_AA](/images/notes/MF_UI_AA.png)
 
 And here's the final result:
-![Perfection.](/images/notes/SDF_Perfect_Circle.png)
-![Perfection.](/images/notes/SDF_Perfect_Circle_Nodes.png)
->The anti-aliasing function does: it blends the edge over roughly one pixel, keeping it smooth at the displayed size.
+![Anti-aliased circle](/images/notes/SDF_Perfect_Circle.png)
+![Nodes for the anti-aliased circle](/images/notes/SDF_Perfect_Circle_Nodes.png)
+>The anti-aliasing function blends the edge over roughly one pixel, keeping it smooth at the displayed size.
 
 
-![Perfection.](https://media.makeameme.org/created/perfection-d530b4eff3.jpg)
+![Perfection.](/images/notes/SDF_Perfection_Meme.jpg)
 
 
 
 
 #### References
-https://maxmain.io/touchdesigner-components/tops/signed-distance-fields/
+
+- [Signed Distance Fields — maxmain.io](https://maxmain.io/touchdesigner-components/tops/signed-distance-fields/)

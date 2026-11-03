@@ -1,16 +1,16 @@
 ---
 title: "Blooms and Breakfast"
-date: "2025-07 – Now"
+date: "Jul 2025 – Present"
 type: "project"
 cover: "/images/blooms-and-breakfast.png"
 order: 1
 summary: "Technical art focused on UI integrations, technical debt, custom shaders, and tools for faster interface production."
-tags: ["Technical Art", "UI Integration", "Custom Shaders", "UI Tools"]
+tags: ["Custom Shaders", "UI Integration", "UI Tools"]
 ---
 
 ## Technical Artist (Tools)
 
-Over the past year, my work at Blooms and Breakfast has focused on technical
+Since joining in July 2025, my work at Blooms and Breakfast has focused on technical
 debt, UI integrations, and shader-driven visuals. I also build scripts and
 tools to make interface production more efficient.
 
@@ -34,7 +34,7 @@ interface production.
 
 I rebuilt the project's button system using shaders instead of texture assets.
 Without image-based buttons, texture dimensions were no longer a constraint,
-and buttons rendered pixel-perfect with clean, jagged-free edges. The new
+and buttons rendered pixel-perfect with clean, aliasing-free edges. The new
 system also improved performance and made custom themes possible.
 
 I organized ready-to-use buttons in a folder so the team could drag and drop

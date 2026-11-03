@@ -1,12 +1,12 @@
 ---
 title: "Looney Tunes: WoM"
-date: "2019-10 – 2022-04"
+date: "Oct 2019 – Apr 2022"
 type: "project"
 cover: "/images/ltwom.jpg"
 order: 3
 collapsible: ["Old manual LiveOps pipeline", "New automated LiveOps pipeline"]
 summary: "Built a LiveOps art pipeline that cut asset integration from over a day to under 30 minutes."
-tags: ["C#", "Windows command scripting", "Photoshop JavaScript"]
+tags: ["Unity", "C#", "Python", "Jenkins", "Photoshop JavaScript", "Windows command scripting", "Shaders"]
 link: "https://youtu.be/DcvUOqqnc3g?t=60"
 ---
 

@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { asset, isVideo } from "@/lib/asset";
+import { formatDate } from "@/lib/format";
 import type { PostMeta } from "@/lib/posts";
 
 type ProjectGridProps = {
@@ -228,7 +229,7 @@ export default function ProjectGrid({
                   <span className={`mb-3 min-h-0 flex-1 rounded-md bg-black/5 dark:bg-white/5 ${showSummaries ? "flex flex-col p-4" : ""}`}>
                     {showSummaries && (
                       <>
-                        <time className="text-xs opacity-60">{project.date}</time>
+                        <time dateTime={project.date} className="text-xs opacity-60">{formatDate(project.date)}</time>
                         <span className="mt-3 text-sm leading-relaxed">{project.summary}</span>
                       </>
                     )}

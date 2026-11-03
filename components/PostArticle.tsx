@@ -1,6 +1,7 @@
 import PostContent from "@/components/PostContent";
 import { getPostBySlug, getPostMeta, type PostType } from "@/lib/posts";
 import { notFound } from "next/navigation";
+import { formatDate } from "@/lib/format";
 
 export default async function PostArticle({ slug, type }: { slug: string; type: PostType }) {
   if (getPostMeta(slug)?.type !== type) notFound();
@@ -11,7 +12,7 @@ export default async function PostArticle({ slug, type }: { slug: string; type: 
     <article className="space-y-4">
       <header>
         <h1 className="text-2xl font-semibold">{post.title}</h1>
-        <p className="text-xs opacity-60">{post.date}</p>
+        <p className="text-xs opacity-60">{formatDate(post.date)}</p>
         {post.link && (
           <a href={post.link} target="_blank" rel="noopener noreferrer" className="text-sm underline">
             {post.link}

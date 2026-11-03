@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatDate } from "@/lib/format";
 import { getPostsByType } from "@/lib/posts";
 
 export const metadata = { title: "Notes — Rafael Dalmazo" };
@@ -15,7 +16,7 @@ export default function BlogPage() {
             <Link href={`/notes/${post.slug}`} className="text-lg font-medium underline">
               {post.title}
             </Link>
-            <p className="text-xs opacity-60">{post.date}</p>
+            <p className="text-xs opacity-60">{formatDate(post.date)}</p>
             <p className="text-sm opacity-80">{post.summary}</p>
           </li>
         ))}
