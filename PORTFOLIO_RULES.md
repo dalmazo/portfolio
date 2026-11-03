@@ -3,27 +3,37 @@
 Source of truth for how this portfolio site works and is maintained.
 
 ## Rule 1 — Content-driven pages
-All pages (About, Projects, Blog posts, Contact) are generated from Markdown files
-in the `posts/` and `notes/` folders. Each file needs YAML front-matter:
+Projects and notes are generated from Markdown files in the `posts/` and `notes/`
+folders. Each file needs YAML front-matter:
 
 ```md
 ---
 title: "My Project"
 date: "2026-09-23"
 type: "project"   # one of: about | project | blog | contact
-summary: "One-line description shown in listings."
+summary: "One-line description shown in listings and link previews."
+cover: "/images/my-project.png"   # optional card image, or a .mp4/.webm video
+order: 6                          # optional, projects only: lower comes first
+tags: ["Unreal", "Materials"]     # optional, shown as "Tools"
+link: "https://example.com"       # optional external link
+collapsible: ["Section title"]    # optional: these ### sections render collapsed
 ---
 
-Body content in Markdown/MDX goes here.
+Body content in Markdown goes here.
 ```
 
-Add projects and site pages to `posts/`, and add writing to `notes/`. No code
+Add projects to `posts/` (`type: "project"`, shown at `/projects/<slug>`) and
+writing to `notes/` (`type: "blog"`, shown at `/notes/<slug>` and listed at `/blog`).
+Put cover images in `public/images/` and videos in `public/videos/`. No code
 changes are required.
+
+`posts/about.md` and `posts/contact.md` are kept as reference copy but are not
+rendered as pages; the home page's contact card and footer cover that content.
 
 ## Rule 2 — Simple dark/white theme
 - Two themes only: dark and light. No extra color schemes.
 - Minimal typography-focused layout (Tailwind `prose` classes), no heavy UI library.
-- A toggle in the header switches themes; preference is saved in `localStorage` and
+- A toggle (home page footer, and next to the back button on inner pages) switches themes; preference is saved in `localStorage` and
   falls back to the OS `prefers-color-scheme` on first visit.
 
 ## Rule 3 — Flowcharts without hand-writing diagram syntax
@@ -33,8 +43,8 @@ have to write Mermaid syntax by hand:
 1. In a post, describe the flow in plain English (e.g. as a comment or a request to
    the assistant): "user logs in, then checks token, if valid go to dashboard else
    show error".
-2. Ask Copilot to turn that description into a Mermaid diagram. Copilot writes a
-   fenced code block into the `.md` file:
+2. Ask your coding assistant to turn that description into a Mermaid diagram. It
+   writes a fenced code block into the `.md` file:
 
    ````md
    ```mermaid
@@ -47,6 +57,8 @@ have to write Mermaid syntax by hand:
 
 3. The site's Markdown renderer detects ` ```mermaid ` code blocks and renders them
    as an actual diagram (via the `mermaid` client-side library) instead of plain text.
+   The library is only downloaded on pages that contain a diagram, and diagrams
+   redraw to match the theme when it is toggled.
 
 This is an authoring-time convention — there is no runtime AI call in the deployed
 site, keeping it fully static and free to host.
@@ -84,7 +96,10 @@ The renderer replaces it with an HTML5 `<video controls>` player.
 - Deployed as a GitHub Pages **project page** at `https://<username>.github.io/portfolio`,
   via a GitHub Actions workflow that builds on every push to `main` and publishes the
   static export automatically.
-- To publish a new project or site page: add/edit a `.md` file in `posts/`.
+- To publish a new project: add/edit a `.md` file in `posts/`.
+- Assets referenced from components must go through `asset()` in `lib/asset.ts` so
+  they get the `/portfolio` prefix on GitHub Pages. Paths inside Markdown are
+  prefixed automatically.
 - To publish a new note: add/edit a `.md` file in `notes/`, commit, push — the site
   rebuilds and deploys itself.
 
@@ -93,7 +108,7 @@ The renderer replaces it with an HTML5 `<video controls>` player.
 |-------------------|-------------------------------------------|
 | Framework         | Next.js (App Router, TypeScript, static export) |
 | Styling           | Tailwind CSS                              |
-| Content           | Markdown/MDX files in `posts/` and `notes/` + front-matter |
-| Diagrams          | Mermaid, authored via plain-English prompt to Copilot |
+| Content           | Markdown files in `posts/` and `notes/` + front-matter |
+| Diagrams          | Mermaid, authored via plain-English prompt to an assistant |
 | Theme             | Dark/white toggle, localStorage + OS fallback |
 | Hosting           | GitHub Pages (project page), GitHub Actions deploy |

@@ -2,6 +2,8 @@
 title: "Blooms and Breakfast"
 date: "2025-07 – Now"
 type: "project"
+cover: "/images/blooms-and-breakfast.png"
+order: 1
 summary: "Technical art focused on UI integrations, technical debt, custom shaders, and tools for faster interface production."
 tags: ["Technical Art", "UI Integration", "Custom Shaders", "UI Tools"]
 ---

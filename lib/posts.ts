@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import html from "remark-html";
+import { basePath } from "@/lib/asset";
 
 const contentDirectories = {
   posts: path.join(process.cwd(), "posts"),
@@ -13,14 +14,6 @@ const contentDirectories = {
 export type PostType = "about" | "project" | "blog" | "contact";
 export type ContentCollection = keyof typeof contentDirectories;
 
-const projectOrder = [
-  "project-blooms",
-  "project-fortnite",
-  "project-looney-tunes",
-  "project-wonderbox",
-  "project-pk-xd",
-];
-
 export interface PostMeta {
   slug: string;
   title: string;
@@ -29,6 +22,12 @@ export interface PostMeta {
   summary: string;
   tags?: string[];
   link?: string;
+  /** Card image or video (.mp4/.webm), e.g. "/images/fortnite.jpg". */
+  cover?: string;
+  /** Sort position for projects; lower comes first. Unordered projects go last. */
+  order?: number;
+  /** "###" headings whose sections render as collapsible blocks. */
+  collapsible?: string[];
 }
 
 export interface Post extends PostMeta {
@@ -49,16 +48,10 @@ function getSlugs(collection: ContentCollection): string[] {
 }
 
 function getPostsMeta(collection: ContentCollection): PostMeta[] {
-  return getSlugs(collection)
-    .map((slug) => {
-      const { data } = readMarkdownFile(`${slug}.md`, collection);
-      return { slug, ...data } as PostMeta;
-    })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
-}
-
-export function getAllPostSlugs(): string[] {
-  return getSlugs("posts");
+  return getSlugs(collection).map((slug) => {
+    const { data } = readMarkdownFile(`${slug}.md`, collection);
+    return { slug, ...data } as PostMeta;
+  });
 }
 
 export function getAllNoteSlugs(): string[] {
@@ -75,18 +68,17 @@ export function getPostsByType(type: PostType): PostMeta[] {
   const posts = getAllPostsMeta().filter((post) => post.type === type);
   if (type !== "project") return posts;
 
-  return posts.sort((a, b) => {
-    const aIndex = projectOrder.indexOf(a.slug);
-    const bIndex = projectOrder.indexOf(b.slug);
-    return (aIndex === -1 ? projectOrder.length : aIndex) -
-      (bIndex === -1 ? projectOrder.length : bIndex);
-  });
+  const position = (post: PostMeta) => post.order ?? Number.POSITIVE_INFINITY;
+  return posts.sort((a, b) => position(a) - position(b));
+}
+
+export function getPostMeta(slug: string): PostMeta | undefined {
+  return getAllPostsMeta().find((post) => post.slug === slug);
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
   const collection = getSlugs("posts").includes(slug) ? "posts" : "notes";
   const { data, content } = readMarkdownFile(`${slug}.md`, collection);
-  const basePath = process.env.GITHUB_ACTIONS === "true" ? "/portfolio" : "";
   const markdown = content.replace(
     /(```video[ \t]*\r?\n)\/(videos\/[^\r\n]+)/g,
     `$1${basePath}/$2`,

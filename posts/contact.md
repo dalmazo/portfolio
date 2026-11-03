@@ -9,4 +9,4 @@ summary: "Reach out via email or LinkedIn."
 
 - 📨 [Email me](mailto:dalmazo.rafael+jobs@gmail.com)
 - 💻 [LinkedIn](https://www.linkedin.com/in/dalmazo/)
-- 📝 [Resume](https://www.linkedin.com/in/dalmazo/)
+- 📝 [Resume](/resume.pdf)

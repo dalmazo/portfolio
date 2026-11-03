@@ -2,6 +2,8 @@
 title: "PK XD"
 date: "2022-04 – 2022-08"
 type: "project"
+cover: "/images/pk-xd.png"
+order: 5
 summary: "UI Technical Artist — LiveOps integrations and communication-through-emotes feature."
 tags: ["UI", "Technical Artist"]
 link: "https://www.playpkxd.com"

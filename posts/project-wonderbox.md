@@ -2,6 +2,8 @@
 title: "Wonderbox"
 date: "2022-09 – 2023-06"
 type: "project"
+cover: "/images/wonderbox.jpg"
+order: 4
 summary: "Led development of an Unreal tool that turns SVGs into configurable SDF, MSDF, and MTSDF textures."
 tags: ["Technical Artist", "Tools", "Blueprint"]
 link: "https://www.aquiris.com.br/presskit/games/wonderbox"

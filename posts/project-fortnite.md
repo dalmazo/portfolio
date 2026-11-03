@@ -2,6 +2,8 @@
 title: "Fortnite"
 date: "2023-05 – 2025-06"
 type: "project"
+cover: "/images/fortnite.jpg"
+order: 2
 summary: "Technical UI Designer working on engagement events and battle passes."
 tags: ["Unreal Engine 5", "UMG", "Widget Blueprint", "Materials", "MVVM"]
 link: "https://www.fortnite.com"

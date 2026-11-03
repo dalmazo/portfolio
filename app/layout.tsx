@@ -26,14 +26,23 @@ const finlandicaText = Finlandica_Text({
 });
 
 export const metadata: Metadata = {
+  // Origin only: image paths already include the /portfolio base path.
+  metadataBase: new URL("https://dalmazo.github.io"),
   title: "Rafael Dalmazo - Portfolio",
   description: "Technical Artist portfolio - projects, notes and contact.",
+  openGraph: {
+    title: "Rafael Dalmazo - Portfolio",
+    description: "UI & Tools Technical Artist — projects, notes and contact.",
+    siteName: "Rafael Dalmazo",
+    type: "website",
+  },
 };
 
 // Applied before hydration so the theme is correct on first paint.
 const themeInitScript = `
 (function () {
-  var stored = localStorage.getItem("theme");
+  var stored = null;
+  try { stored = localStorage.getItem("theme"); } catch (e) {}
   var isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
   document.documentElement.classList.toggle("dark", isDark);
 })();

@@ -1,6 +1,7 @@
 import ContactCard from "@/components/ContactCard";
 import ProjectGrid from "@/components/ProjectGrid";
 import ThemeToggle from "@/components/ThemeToggle";
+import { asset } from "@/lib/asset";
 import { getPostsByType } from "@/lib/posts";
 
 export default function HomePage() {
@@ -25,15 +26,15 @@ export default function HomePage() {
         <section>
           <h2 className="text-xl">Hello?</h2>
           <a
-            href="mailto:dalmazo.rafael@gmail.com"
-            className="mt-1 block w-fit text-2xl text-black/55 transition-colors hover:text-black dark:text-white/55 dark:hover:text-white"
+            href="mailto:dalmazo.rafael+jobs@gmail.com"
+            className="mt-1 block w-fit text-2xl text-black/55 [overflow-wrap:anywhere] transition-colors hover:text-black dark:text-white/55 dark:hover:text-white"
           >
-            dalmazo.rafael@gmail.com
+            dalmazo.rafael+jobs@gmail.com
           </a>
         </section>
         <section>
           <h2 className="text-xl">Connect</h2>
-          <div className="mt-1 flex items-center justify-between">
+          <div className="mt-1 flex flex-wrap items-center gap-x-6 gap-y-2">
             <a
               href="https://www.linkedin.com/in/dalmazo/"
               target="_blank"
@@ -42,7 +43,17 @@ export default function HomePage() {
             >
               LinkedIn
             </a>
-            <ThemeToggle />
+            <a
+              href={asset("/resume.pdf")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-fit text-2xl text-black/55 underline underline-offset-4 transition-colors hover:text-black dark:text-white/55 dark:hover:text-white"
+            >
+              Resume
+            </a>
+            <span className="ml-auto">
+              <ThemeToggle />
+            </span>
           </div>
         </section>
       </footer>

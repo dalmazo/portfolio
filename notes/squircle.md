@@ -2,6 +2,7 @@
 title: "Tutorial: Building a Squircle Material Function"
 date: "2026-10-09"
 type: "blog"
+cover: "/videos/squircle.mp4"
 summary: "Build an adjustable, antialiased squircle mask in Unreal Engine's material editor."
 tags: ["UI", "Material", "Unreal"]
 ---

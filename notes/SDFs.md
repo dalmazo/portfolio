@@ -2,6 +2,7 @@
 title: "Tutorial sessions: SDFs Part 1"
 date: "2026-10-08"
 type: "blog"
+cover: "/images/notes/SDF_Distance_05.png"
 summary: "What are SDFs, and why do I need to know they exist?"
 tags: ["UI", "Material", "Unreal", "Unity"]
 ---

@@ -306,35 +306,17 @@ h6,
 
   .contact-card-inner,
   .contact-flip,
-  .contact-sheen {
-    transition: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
+  .contact-sheen,
   .project-card-image img,
+  .project-card-image video,
   .project-card-image > span {
     transition: none;
   }
 }
 
-.sidebar-about .about-callout {
+.about-callout {
   border: 0;
   padding: 0;
-}
-
-.sidebar-about .about-callout-lead,
-.sidebar-about .about-callout-detail p {
-  font-size: 0.75rem;
-  line-height: 1.5;
-}
-
-.sidebar-about .about-callout-detail {
-  margin-top: 0.5rem;
-}
-
-.sidebar-about .about-callout-tag {
-  font-size: 0.5rem;
 }
 
 .about-callout {

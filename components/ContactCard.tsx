@@ -7,6 +7,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 
 const TILT_VARS = ["--rx", "--ry", "--gx", "--gy"] as const;
 
@@ -86,7 +87,7 @@ export default function ContactCard() {
           <span className="contact-face contact-back" aria-hidden={!flipped}>
             <span className="contact-photo">
               <Image
-                src="/images/contact.jpeg"
+                src={asset("/images/contact.jpeg")}
                 alt="Portrait of Rafael Dalmazo"
                 fill
                 loading="eager"

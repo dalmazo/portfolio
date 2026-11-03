@@ -1,9 +1,9 @@
 import PostContent from "@/components/PostContent";
-import { getAllNoteSlugs, getAllPostSlugs, getPostBySlug } from "@/lib/posts";
+import { getPostBySlug, getPostMeta, type PostType } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
-export default async function PostArticle({ slug }: { slug: string }) {
-  if (![...getAllPostSlugs(), ...getAllNoteSlugs()].includes(slug)) notFound();
+export default async function PostArticle({ slug, type }: { slug: string; type: PostType }) {
+  if (getPostMeta(slug)?.type !== type) notFound();
 
   const post = await getPostBySlug(slug);
 
@@ -21,7 +21,7 @@ export default async function PostArticle({ slug }: { slug: string }) {
           <p className="mt-1 text-xs opacity-60">Tools: {post.tags.join(" · ")}</p>
         )}
       </header>
-      <PostContent html={post.contentHtml} />
+      <PostContent html={post.contentHtml} collapsible={post.collapsible} />
     </article>
   );
 }

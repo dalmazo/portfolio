@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import mermaid from "mermaid";
+import { getTheme, subscribeTheme } from "@/lib/theme";
 
 function parseYouTubeInput(input: string): { id: string; start?: number } | null {
   const trimmed = input.trim();
@@ -17,17 +17,21 @@ function parseYouTubeInput(input: string): { id: string; start?: number } | null
   return { id, start };
 }
 
-export default function PostContent({ html }: { html: string }) {
+export default function PostContent({
+  html,
+  collapsible = [],
+}: {
+  html: string;
+  collapsible?: string[];
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const collapsibleKey = collapsible.join("|");
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const collapsibleTitles = new Set([
-      "Old manual LiveOps pipeline",
-      "New automated LiveOps pipeline",
-    ]);
+    const collapsibleTitles = new Set(collapsibleKey ? collapsibleKey.split("|") : []);
     const sectionHeadings = Array.from(container.querySelectorAll("h3"));
     sectionHeadings.forEach((heading) => {
       const title = heading.textContent?.trim() ?? "";
@@ -52,27 +56,46 @@ export default function PostContent({ html }: { html: string }) {
       heading.replaceWith(details);
     });
 
-    const isDark = document.documentElement.classList.contains("dark");
-    mermaid.initialize({ startOnLoad: false, theme: isDark ? "dark" : "default" });
-
+    let unsubscribeTheme: (() => void) | undefined;
+    let cancelled = false;
     const mermaidBlocks = Array.from(
       container.querySelectorAll<HTMLElement>("code.language-mermaid")
     );
-    mermaidBlocks.forEach((block, index) => {
-      const definition = block.textContent ?? "";
-      const id = `mermaid-diagram-${index}-${Math.random().toString(36).slice(2)}`;
-      mermaid
-        .render(id, definition)
-        .then(({ svg }) => {
-          const wrapper = document.createElement("div");
-          wrapper.className = "mermaid-diagram";
-          wrapper.innerHTML = svg;
-          block.closest("pre")?.replaceWith(wrapper);
-        })
-        .catch((err) => {
-          console.error("Failed to render mermaid diagram", err);
-        });
+    // Keep each definition on its wrapper so diagrams can be redrawn when the theme changes.
+    mermaidBlocks.forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid-diagram";
+      wrapper.dataset.definition = block.textContent ?? "";
+      block.closest("pre")?.replaceWith(wrapper);
     });
+    // Also picks up wrappers from an earlier run of this effect (React dev mode runs it twice).
+    const wrappers = Array.from(
+      container.querySelectorAll<HTMLElement>(".mermaid-diagram[data-definition]")
+    );
+    if (wrappers.length > 0) {
+      import("mermaid").then(({ default: mermaid }) => {
+        if (cancelled) return;
+        const renderAll = () => {
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: getTheme() === "dark" ? "dark" : "default",
+          });
+          wrappers.forEach((wrapper, index) => {
+            const id = `mermaid-diagram-${index}-${Math.random().toString(36).slice(2)}`;
+            mermaid
+              .render(id, wrapper.dataset.definition ?? "")
+              .then(({ svg }) => {
+                wrapper.innerHTML = svg;
+              })
+              .catch((err) => {
+                console.error("Failed to render mermaid diagram", err);
+              });
+          });
+        };
+        renderAll();
+        unsubscribeTheme = subscribeTheme(renderAll);
+      });
+    }
 
     const youtubeBlocks = Array.from(
       container.querySelectorAll<HTMLElement>("code.language-youtube")
@@ -113,7 +136,12 @@ export default function PostContent({ html }: { html: string }) {
       wrapper.appendChild(video);
       block.closest("pre")?.replaceWith(wrapper);
     });
-  }, [html]);
+
+    return () => {
+      cancelled = true;
+      unsubscribeTheme?.();
+    };
+  }, [html, collapsibleKey]);
 
   return (
     <div

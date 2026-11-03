@@ -1,15 +1,18 @@
 import PostArticle from "@/components/PostArticle";
-import { getAllNoteSlugs } from "@/lib/posts";
+import { postMetadata } from "@/lib/metadata";
+import { getPostsByType } from "@/lib/posts";
+
+type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return getAllNoteSlugs().map((slug) => ({ slug }));
+  return getPostsByType("blog").map(({ slug }) => ({ slug }));
 }
 
-export default async function NotesArticlePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export async function generateMetadata({ params }: Props) {
+  return postMetadata((await params).slug);
+}
+
+export default async function NotesArticlePage({ params }: Props) {
   const { slug } = await params;
-  return <PostArticle slug={slug} />;
+  return <PostArticle slug={slug} type="blog" />;
 }

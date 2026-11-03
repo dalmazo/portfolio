@@ -8,20 +8,8 @@ import {
 } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { asset, isVideo } from "@/lib/asset";
 import type { PostMeta } from "@/lib/posts";
-
-const projectImages: Record<string, string> = {
-  "project-blooms": "/images/blooms-and-breakfast.png",
-  "project-fortnite": "/images/fortnite.jpg",
-  "project-looney-tunes": "/images/ltwom.jpg",
-  "project-pk-xd": "/images/pk-xd.png",
-  "project-wonderbox": "/images/wonderbox.jpg",
-  "SDFs": "/images/notes/SDF_Distance_05.png",
-};
-
-const projectVideos: Record<string, string> = {
-  squircle: "/videos/squircle.mp4"
-};
 
 type ProjectGridProps = {
   projects: PostMeta[];
@@ -189,8 +177,9 @@ export default function ProjectGrid({
         className="project-card-list flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 pb-4 pt-4 cursor-grab select-none active:cursor-grabbing lg:relative lg:left-1/2 lg:w-[calc(100vw_-_4rem)] lg:max-w-none lg:-translate-x-1/2"
       >
         {projects.map((project, index) => {
-          const imageSrc = projectImages[project.slug];
-          const videoSrc = projectVideos[project.slug];
+          const cover = project.cover ? asset(project.cover) : undefined;
+          const videoSrc = cover && isVideo(cover) ? cover : undefined;
+          const imageSrc = cover && !videoSrc ? cover : undefined;
 
           return (
             <li key={project.slug} className={`${cardAspectClass} ${cardSizeClass} min-w-0 flex-none snap-start`}>
