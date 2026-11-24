@@ -68,6 +68,16 @@ and maintain the GitHub page.
 I worked on UI integrations for the boss battle revamp, daily check-ins, and
 other features.
 
+```video
+/videos/ltwom-punch-in.mp4
+poster: /videos/ltwom-punch-in-poster.jpg
+```
+*Alliance punch-in, the alliance's daily check-in. Player names are blurred.*
+
+<!--
+  Source: 0:42–0:48 of https://www.youtube.com/watch?v=dpXVjvxtfl0
+-->
+
 ### Shaders and materials
 
 I developed a shader function to process LUTs across the project without
@@ -76,6 +86,13 @@ heavily customized, we integrated the function directly into each shader that
 needed it. This opened up new visual possibilities for characters, effects,
 and customization throughout the game.
 
-```youtube
-https://youtu.be/DcvUOqqnc3g?t=60
+```video
+/videos/ltwom-lut.mp4
+poster: /videos/ltwom-lut-poster.jpg
 ```
+
+<!--
+  YouTube showcase replaced by the local clip above (0:59–1:09 of the same video).
+  Kept here for reference; to bring it back, add a ```youtube block with this URL.
+  - Tune Squad Shooters vs Solid Tin Coyote: https://youtu.be/DcvUOqqnc3g?t=60
+-->
