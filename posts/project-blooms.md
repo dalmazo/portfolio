@@ -14,7 +14,8 @@ tags: ["Custom Shaders", "UI Integration", "UI Tools"]
 
 From July 2025 to November 2026, my work at Bloom & Breakfast focused on
 technical debt, UI integrations, and shader-driven visuals. I also built scripts
-and tools to make interface production more efficient.
+and tools to make interface production more efficient. Bloom & Breakfast was
+cancelled in November 2026, when Fortis Games shut down.
 
 ![Bloom & Breakfast key art: characters in front of the B&B by the sea](/images/bloom-breakfast-keyart.jpg)
 *Image: Fortis Games*
