@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { asset } from "@/lib/asset";
 import { getTheme, subscribeTheme } from "@/lib/theme";
 
 function parseYouTubeInput(input: string): { id: string; start?: number } | null {
@@ -125,12 +126,19 @@ export default function PostContent({
       container.querySelectorAll<HTMLElement>("code.language-video")
     );
     videoBlocks.forEach((block) => {
-      const src = (block.textContent ?? "").trim();
+      // First line: the video path. Optional "poster: /path.jpg" line: the still shown before play.
+      const [src = "", ...rest] = (block.textContent ?? "")
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
       if (!src) return;
+      const poster = rest.find((line) => line.startsWith("poster:"))?.slice(7).trim();
       const wrapper = document.createElement("div");
       wrapper.className = "video-embed";
       const video = document.createElement("video");
       video.src = src;
+      if (poster) video.poster = asset(poster);
+      video.preload = "metadata";
       video.controls = true;
       video.playsInline = true;
       wrapper.appendChild(video);

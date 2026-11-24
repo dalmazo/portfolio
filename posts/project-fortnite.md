@@ -17,6 +17,11 @@ Two years as Fortnite's Technical UI Designer: rebuilt the battle pass
 system on MVVM (allowing more passes per quarter) and shipped UI for
 Jujutsu Kaisen, TMNT, Avatar, and more.
 
+```video
+/videos/fortnite-reel.mp4
+poster: /videos/fortnite-reel-poster.jpg
+```
+
 Day-to-day, that meant working closely with other UI Artists to get every
 event and pass integrated and production-ready:
 
@@ -48,43 +53,19 @@ payoff was significant: fewer bugs, way less maintenance time, and room to
 ship more passes every quarter, opening up a lot more monetization
 opportunity along the way.
 
-```youtube
-https://www.youtube.com/watch?v=zjpRLlW4_oc
-```
-
 ### Events and passes I shipped
 
 **Battle Pass**
 
 - **OG Pass** — my first battle pass on Fortnite, and I was the only
   Technical UI Designer responsible for shipping it. I implemented the
-  whole Spectral Knight UI structure. Fun fact: the Spectral Knight
+  whole Spectra Knight UI structure. Fun fact: the Spectra Knight
   background was the first background I shipped to Fortnite — an animated
   piece made as a tribute to the old OG background.
-
-  ```youtube
-  https://www.youtube.com/watch?v=Yigagwhmtkg
-  ```
 
 - **CH5S1 – CH5S4** — I stayed responsible for the pass across all four
   seasons, but we didn't ship much new here; the focus shifted to the
   engagement events below, so this was mostly maintenance.
-
-  ```youtube
-  https://www.youtube.com/watch?v=hq2RWJdmJ-s
-  ```
-
-  ```youtube
-  https://www.youtube.com/watch?v=wF0KD6VsRZg
-  ```
-
-  ```youtube
-  https://www.youtube.com/watch?v=0Pb-ZHv2WaA
-  ```
-
-  ```youtube
-  https://www.youtube.com/watch?v=8VS8tlUJucU
-  ```
 
 **Engagement Events**
 
@@ -92,31 +73,15 @@ https://www.youtube.com/watch?v=zjpRLlW4_oc
   widgets for it, plus the materials needed to bring the expected visual
   behavior to life.
 
-  ```youtube
-  https://www.youtube.com/watch?v=0ZB09Ty9xes
-  ```
-
 - **TMNT** — one of the passes where I made the most materials and
   visuals, with a lot of animation transitions. TMNT is one of my
   favorite themes, so I pushed to ship the best experience I could.
-
-  ```youtube
-  https://www.youtube.com/watch?v=zygkF12NI_c
-  ```
 
 - **Avatar** — widget animations and material setups built to work with
   Blueprints. By this point the team was so well synced that everything
   shipped as fluidly as possible.
 
-  ```youtube
-  https://www.youtube.com/watch?v=XMmvP5Bmm10
-  ```
-
 - **Pirates of the Caribbean** — a lot of materials and widget work.
-
-  ```youtube
-  https://www.youtube.com/watch?v=Gb41hkkOdmM
-  ```
 
 ### Woven Shadowblade — reactive pickaxe
 
@@ -126,3 +91,18 @@ pickaxe.
 ```video
 /videos/woven-shadowblade.mp4
 ```
+
+<!--
+  YouTube showcases replaced by the demo reel (/videos/fortnite-reel.mp4).
+  Kept here for reference; to bring one back, add a ```youtube block with its URL.
+  - Battle pass revamp (Chapter 6 Season 1): https://www.youtube.com/watch?v=zjpRLlW4_oc
+  - OG Pass: https://www.youtube.com/watch?v=Yigagwhmtkg
+  - CH5S1: https://www.youtube.com/watch?v=hq2RWJdmJ-s
+  - CH5S2: https://www.youtube.com/watch?v=wF0KD6VsRZg
+  - CH5S3: https://www.youtube.com/watch?v=0Pb-ZHv2WaA
+  - CH5S4: https://www.youtube.com/watch?v=8VS8tlUJucU
+  - Jujutsu Kaisen: https://www.youtube.com/watch?v=0ZB09Ty9xes
+  - TMNT: https://www.youtube.com/watch?v=zygkF12NI_c
+  - Avatar: https://www.youtube.com/watch?v=XMmvP5Bmm10
+  - Pirates of the Caribbean: https://www.youtube.com/watch?v=Gb41hkkOdmM
+-->

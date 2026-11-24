@@ -88,7 +88,8 @@ code block:
 ```
 ````
 
-The renderer replaces it with an HTML5 `<video controls>` player.
+The renderer replaces it with an HTML5 `<video controls>` player. Add an optional
+`poster: /videos/my-clip-poster.jpg` line to show a still image before playback.
 
 ## Rule 4 — Easy to maintain, hosted on GitHub Pages
 - Stack: Next.js (App Router, TypeScript) with static export (`output: 'export'`).

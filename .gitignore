@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Demo reel raw footage and renders
+reel/footage/
+reel/out/
+reel/music.mp3
