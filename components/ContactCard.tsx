@@ -99,11 +99,11 @@ export default function ContactCard() {
             <span className="contact-back-body">
               <span className="contact-bar" />
               <span className="contact-lead">
-                I work at the intersection of art, tools, and engineering.
+                I build the UI players touch, and the tools that ship it.
               </span>
               <span className="contact-body">
-                Building UI materials and Blueprints, writing pipeline tools in Python and C++, and
-                helping teams ship LiveOps content faster.
+                Shaders, Widget Blueprints and C++/Python tools, from Fortnite battle passes to
+                mobile LiveOps.
               </span>
             </span>
             <FlipHint />
