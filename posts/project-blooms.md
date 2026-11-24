@@ -1,6 +1,6 @@
 ---
 title: "Blooms and Breakfast"
-date: "Jul 2025 – Present"
+date: "Jul 2025 – Nov 2026"
 type: "project"
 cover: "/images/blooms-and-breakfast.png"
 order: 1
@@ -8,25 +8,27 @@ summary: "Technical art focused on UI integrations, technical debt, custom shade
 tags: ["Custom Shaders", "UI Integration", "UI Tools"]
 ---
 
-## Technical Artist (Tools)
+## Senior Technical Artist (UI & Tools)
 
-Since joining in July 2025, my work at Blooms and Breakfast has focused on technical
-debt, UI integrations, and shader-driven visuals. I also build scripts and
-tools to make interface production more efficient.
+**Fortis**
+
+From July 2025 to November 2026, my work at Blooms and Breakfast focused on
+technical debt, UI integrations, and shader-driven visuals. I also built scripts
+and tools to make interface production more efficient.
 
 ### UI integration and technical debt
 
-I work on UI integrations while addressing technical debt in the existing
+I worked on UI integrations while addressing technical debt in the existing
 interface systems, helping keep ongoing development moving.
 
 ### Custom shaders and bespoke visuals
 
-I optimize UI visuals with custom shaders and mathematical functions, using
+I optimized UI visuals with custom shaders and mathematical functions, using
 them to create bespoke effects and looks.
 
 ### Tools and workflow improvements
 
-I develop custom scripts and tools to streamline UI workflows and accelerate
+I developed custom scripts and tools to streamline UI workflows and accelerate
 interface production.
 
 
@@ -39,6 +41,6 @@ system also improved performance and made custom themes possible.
 
 I organized ready-to-use buttons in a folder so the team could drag and drop
 them into the UI. For click feedback, I animated shader variables so the
-button's center reacts to input and its lighting shifts naturally, making it
+button's center reacted to input and its lighting shifted naturally, making it
 feel more satisfying to press. I also refactored the underlying code to make
 the system easier to maintain.

@@ -9,7 +9,7 @@ tags: ["UI", "Material", "Unreal"]
 
 ## What is a squircle?
 
-![This is a squircle:](/images/notes/Squircle.png)
+![A red squircle on a dark background](/images/notes/Squircle.png)
 
 It's not quite a square and not quite a circle. It's a *squircle*!
 
@@ -19,13 +19,15 @@ Before you start, read [my introduction to signed distance fields](/notes/SDFs).
 
 Here's the complete material function we'll build:
 
-![Nodes](/images/notes/Squircle_Nodes.png)
+![The full squircle material function graph](/images/notes/Squircle_Nodes.png)
 
-Let's walk through the graph from left to right.
+To use it, create a material with **Material Domain** set to **User Interface**, add the function, and plug its `Shape` output into the material's **Opacity**. `GetUserInterfaceUV` only works in that domain.
+
+Let's walk through the graph section by section.
 
 ### GetUserInterfaceUV
 
-![GetUserInterfaceUV](/images/notes/GetUserInterfaceUV.png)
+![The GetUserInterfaceUV node and its outputs](/images/notes/GetUserInterfaceUV.png)
 
 I still think this node should be called `GetUIUV`... but never mind.
 
@@ -36,25 +38,21 @@ The node provides several UV and size outputs. We'll use two:
 
 ### The bottom section: aspect ratio and exponents
 
-The bottom section compares the width-to-height ratio with the height-to-width ratio, then uses the larger ratio to prepare a power value for each axis. One uses the `Pow` input; the other scales it by the aspect ratio. The `If` nodes make sure the adjustment is applied to the correct axis, whether the element is wider or taller.
+The bottom section compares the width-to-height ratio with the height-to-width ratio, then uses the larger ratio to prepare a power value for each axis. One uses the `Pow` input (which defaults to `1.61` — more on that at the end); the other scales it by the aspect ratio. The `If` nodes make sure the adjustment is applied to the correct axis, whether the element is wider or taller, and store the results as `PowX` and `PowY`.
 
 This correction matters because both UV axes run from 0 to 1, even when they represent different numbers of pixels.
 
 ### The upper section: building the shape
 
-The upper section builds a squircle-like field from the UVs. First, it measures each coordinate's distance from the center, scales those distances, and raises them to the exponents calculated below.
+The upper section builds a squircle-like field from the UVs. First, it measures each coordinate's distance from the center. Those distances run from 0 to 0.5, so multiplying them by 2 remaps them to 0–1, with the element's edge at 1. Then it raises each one to its exponent, `PowX` or `PowY`, from the bottom section.
 
 The two `Power` nodes produce the fields shown here:
 
-![Pow](/images/notes/Squircle_Pow.png)
-
-We then take the `Min` and `Max` of those values:
-
-![MinMax](/images/notes/Squircle_MinMax.png)
+![The horizontal and vertical fields from the two Power nodes](/images/notes/Squircle_Pow.png)
 
 Appending those two values gives us a 2D vector. Measuring its length combines the two axis fields into one radial field:
 
-![AppendLength](/images/notes/Squircle_AppendLength.png)
+![The Append and Length nodes combining both fields](/images/notes/Squircle_AppendLength.png)
 
 At this point, you might be asking:
 
@@ -62,9 +60,12 @@ At this point, you might be asking:
 
 And I'd say: we're already there.
 
-![End](/images/notes/Squircle_End.png)
+![The final nodes: Multiply, MF_UI_AA and 1-x feeding the two outputs](/images/notes/Squircle_End.png)
 
-The `0.5` multiplier scales the combined field. The graph sends this result to two places: into the `MF_UI_AA` function from [the previous tutorial](/notes/SDFs) to antialias the filled shape, and through `1-x` to produce an output with the opposite polarity.
+The length branches in two directions:
+
+- **Shape:** it's multiplied by `0.5` and sent into the `MF_UI_AA` function from [the previous tutorial](/notes/SDFs). `MF_UI_AA` treats 0.5 as the boundary, so halving the field puts the squircle's edge (a length of 1) exactly on that threshold. The function then antialiases the filled shape.
+- **SDF:** the length goes straight through `1-x`, producing an output with the opposite polarity.
 
 The graph calls this output an SDF, but strictly speaking it's an **SDF-like implicit field**, not an exact signed distance field: its values don't represent the precise distance to the nearest point on the boundary. That's fine for making this mask, but keep it in mind if you need accurate distances for other effects.
 
@@ -72,11 +73,11 @@ The graph calls this output an SDF, but strictly speaking it's an **SDF-like imp
 
 Here's the fun part! We can use the output as a mask to tint the squircle with a simple color:
 
-![Option 1](/images/notes/Squircle_Colored1.png)
+![The squircle tinted with a single color](/images/notes/Squircle_Colored1.png)
 
 Or we can use the UI UVs to blend colors and get more interesting results:
 
-![Option 2](/images/notes/Squircle_Colored2.png)
+![The squircle with a color gradient blended across the UI UVs](/images/notes/Squircle_Colored2.png)
 
 And that's it! You now have an adjustable squircle material function for UI.
 

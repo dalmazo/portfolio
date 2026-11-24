@@ -11,6 +11,8 @@ link: "https://www.playpkxd.com"
 
 ## Technical Artist (UI)
 
+**Afterverse**
+
 I was responsible for LiveOps integrations and UI integration for several
 features. Most of my work was on LiveOps events: exporting assets from Figma,
 creating/updating atlases, checking the compression method, and assigning

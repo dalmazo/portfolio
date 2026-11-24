@@ -12,6 +12,8 @@ link: "https://youtu.be/DcvUOqqnc3g?t=60"
 
 ## Technical Artist
 
+**Aquiris**
+
 ### LiveOps art integration
 
 I joined the team to handle LiveOps art integration. Alongside my day-to-day

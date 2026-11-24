@@ -14,7 +14,7 @@ link: "https://www.fortnite.com"
 **Epic Games**
 
 Two years as Fortnite's Technical UI Designer: rebuilt the battle pass
-system on MVVM (from 2 to 8 passes per quarter) and shipped UI for
+system on MVVM (allowing more passes per quarter) and shipped UI for
 Jujutsu Kaisen, TMNT, Avatar, and more.
 
 Day-to-day, that meant working closely with other UI Artists to get every
@@ -44,9 +44,9 @@ instead of one-off code each time. Epic pushed MVVM as the way forward for
 building UI in UE5, and having used it here, I fully agree — it's a great
 fit for UI work. That let the team focus on what actually matters — the
 player experience — instead of untangling the previous pass's code. The
-payoff was significant: fewer bugs, way less maintenance time, and we went
-from shipping 2 passes every 3 months to 8 passes in the same window,
-opening up a lot more monetization opportunity along the way.
+payoff was significant: fewer bugs, way less maintenance time, and room to
+ship more passes every quarter, opening up a lot more monetization
+opportunity along the way.
 
 ```youtube
 https://www.youtube.com/watch?v=zjpRLlW4_oc
