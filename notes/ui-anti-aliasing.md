@@ -2,7 +2,7 @@
 title: "Tutorial: Pixel-Perfect Anti-Aliasing for UI Materials"
 date: "2026-10-08"
 type: "blog"
-cover: "/images/notes/SDF_Perfect_Circle.png"
+cover: "/images/notes/AA_Cover.png"
 summary: "Turn a jagged material circle into a smooth, pixel-perfect edge in Unreal, with a signed distance field and screen-space derivatives."
 tags: ["UI", "Material", "Unreal", "Anti-aliasing"]
 ---
