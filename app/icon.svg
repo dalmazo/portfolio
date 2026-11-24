@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c7d3ff"/>
+      <stop offset="1" stop-color="#7f95f0"/>
+    </linearGradient>
+  </defs>
+  <!-- Squircle, same shape as the resume mark -->
+  <path fill="url(#bg)" d="M32 0C56.3 0 64 7.7 64 32S56.3 64 32 64 0 56.3 0 32 7.7 0 32 0Z"/>
+  <!-- Cat head -->
+  <g fill="#101013">
+    <path d="M14 34 16 12 29 24Z"/>
+    <path d="M50 34 48 12 35 24Z"/>
+    <ellipse cx="32" cy="37" rx="19" ry="16"/>
+  </g>
+  <g fill="#c7d3ff">
+    <ellipse cx="24.5" cy="36" rx="2.8" ry="4"/>
+    <ellipse cx="39.5" cy="36" rx="2.8" ry="4"/>
+    <path d="M29.5 43h5L32 46Z"/>
+  </g>
+</svg>

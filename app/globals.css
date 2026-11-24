@@ -178,6 +178,17 @@ h6,
   padding: 7.5cqw;
 }
 
+/* Cat squircle in the top-left corner, aligned with the text's left edge */
+.contact-mark {
+  position: absolute;
+  top: 6.5cqw;
+  left: 7.5cqw;
+  z-index: 2;
+  width: 10cqw;
+  height: 10cqw;
+  filter: drop-shadow(0 1.2cqw 2.4cqw rgb(127 149 240 / 0.35));
+}
+
 .contact-name {
   font-family: var(--font-archivo-black);
   font-size: 8.4cqw;
@@ -260,18 +271,68 @@ h6,
   top: 4.5cqw;
   right: 4.5cqw;
   z-index: 3;
-  display: grid;
-  width: 6.5cqw;
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
   height: 6.5cqw;
-  place-items: center;
+  padding-inline: 2cqw 2.6cqw;
   border: 1px solid color-mix(in srgb, var(--card-fg) 28%, transparent);
   border-radius: 999px;
   color: var(--card-muted);
-  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  font-family: var(--font-finlandica-text);
+  /* Floor keeps the label readable on phones, where 2.7cqw drops below 10px */
+  font-size: max(2.7cqw, 0.66rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color 300ms ease, border-color 300ms ease, background-color 300ms ease;
+}
+
+.contact-flip-mouse,
+.contact-flip-touch {
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
+}
+
+.contact-flip svg {
+  width: max(3.2cqw, 0.8rem);
+  height: max(3.2cqw, 0.8rem);
+}
+
+@keyframes contact-wheel {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 2px;
+  }
 }
 
 .contact-card:hover .contact-flip {
-  transform: rotate(180deg);
+  color: var(--card-fg);
+  border-color: color-mix(in srgb, var(--card-accent) 70%, transparent);
+  background: color-mix(in srgb, var(--card-accent) 12%, transparent);
+}
+
+/* The mouse wheel nudges while hovering, a small "click me" cue */
+.contact-card:hover .contact-flip-wheel {
+  animation: contact-wheel 900ms ease-in-out infinite;
+}
+
+.contact-flip-touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .contact-flip-mouse {
+    display: none;
+  }
+
+  .contact-flip-touch {
+    display: flex;
+  }
 }
 
 .contact-sheen {

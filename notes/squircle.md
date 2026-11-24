@@ -15,7 +15,7 @@ It's not quite a square and not quite a circle. It's a *squircle*!
 
 In this tutorial, we'll build one directly in Unreal Engine's material editor. The same idea can be recreated in Unity, though the node setup will be different.
 
-Before you start, read [my introduction to signed distance fields](/notes/SDFs). This tutorial builds on those ideas.
+Before you start, read [my anti-aliasing tutorial](/notes/ui-anti-aliasing). It introduces signed distance fields and builds the `MF_UI_AA` function we'll reuse here.
 
 Here's the complete material function we'll build:
 
@@ -64,7 +64,7 @@ And I'd say: we're already there.
 
 The length branches in two directions:
 
-- **Shape:** it's multiplied by `0.5` and sent into the `MF_UI_AA` function from [the previous tutorial](/notes/SDFs). `MF_UI_AA` treats 0.5 as the boundary, so halving the field puts the squircle's edge (a length of 1) exactly on that threshold. The function then antialiases the filled shape.
+- **Shape:** it's multiplied by `0.5` and sent into the `MF_UI_AA` function from [the anti-aliasing tutorial](/notes/ui-anti-aliasing). `MF_UI_AA` treats 0.5 as the boundary, so halving the field puts the squircle's edge (a length of 1) exactly on that threshold. The function then antialiases the filled shape.
 - **SDF:** the length goes straight through `1-x`, producing an output with the opposite polarity.
 
 The graph calls this output an SDF, but strictly speaking it's an **SDF-like implicit field**, not an exact signed distance field: its values don't represent the precise distance to the nearest point on the boundary. That's fine for making this mask, but keep it in mind if you need accurate distances for other effects.
