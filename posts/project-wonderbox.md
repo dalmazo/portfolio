@@ -1,6 +1,6 @@
 ---
 title: "Wonderbox"
-date: "Sep 2022 – May 2023"
+date: "Sep 2022 – Jun 2023"
 type: "project"
 cover: "/images/wonderbox.jpg"
 order: 4

@@ -13,8 +13,8 @@ link: "https://www.fortnite.com"
 
 **Epic Games**
 
-Two years as Fortnite's Technical UI Designer: rebuilt the battle pass
-system on MVVM (allowing more passes per quarter) and shipped UI for
+Two years as Fortnite's Technical UI Designer: helped rebuild the battle
+pass system on MVVM (allowing more passes per quarter) and shipped UI for
 Jujutsu Kaisen, TMNT, Avatar, and more.
 
 ```video

@@ -1,6 +1,6 @@
 ---
 title: "Bloom & Breakfast"
-date: "Jul 2025 – Nov 2026"
+date: "Jun 2025 – Nov 2026"
 type: "project"
 cover: "/images/blooms-and-breakfast.png"
 order: 1
@@ -8,11 +8,11 @@ summary: "Technical art focused on UI integrations, technical debt, custom shade
 tags: ["Custom Shaders", "UI Integration", "UI Tools"]
 ---
 
-## Senior Technical Artist (UI & Tools)
+## Senior UI Technical Artist
 
 **Fortis**
 
-From July 2025 to November 2026, my work at Bloom & Breakfast focused on
+From June 2025 to November 2026, my work at Bloom & Breakfast focused on
 technical debt, UI integrations, and shader-driven visuals. I also built scripts
 and tools to make interface production more efficient. Bloom & Breakfast was
 cancelled in November 2026, when Fortis Games shut down.
