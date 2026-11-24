@@ -3,6 +3,7 @@ title: "Wonderbox"
 date: "Sep 2022 – Jun 2023"
 type: "project"
 cover: "/images/wonderbox.jpg"
+header: "/images/headers/wonderbox.webp"
 order: 4
 summary: "Led development of an Unreal tool that turns SVGs into configurable SDF, MSDF, and MTSDF textures."
 tags: ["Unreal Engine", "C++", "Unreal Python", "Blueprint", "msdfgen", "Substance Designer"]

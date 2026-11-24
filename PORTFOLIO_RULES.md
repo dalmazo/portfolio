@@ -13,6 +13,7 @@ date: "2026-09-23"
 type: "project"   # one of: about | project | blog | contact
 summary: "One-line description shown in listings and link previews."
 cover: "/images/my-project.png"   # optional card image, or a .mp4/.webm video
+header: "/images/headers/my-project.webp"  # optional wide banner on the project page
 order: 6                          # optional, projects only: lower comes first
 tags: ["Unreal", "Materials"]     # optional, shown as "Tools"
 link: "https://example.com"       # optional external link

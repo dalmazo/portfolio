@@ -24,6 +24,8 @@ export interface PostMeta {
   link?: string;
   /** Card image or video (.mp4/.webm), e.g. "/images/fortnite.jpg". */
   cover?: string;
+  /** Wide banner shown at the top of a project page, e.g. "/images/headers/fortnite.webp". */
+  header?: string;
   /** Sort position for projects; lower comes first. Unordered projects go last. */
   order?: number;
   /** "###" headings whose sections render as collapsible blocks. */

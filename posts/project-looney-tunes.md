@@ -3,6 +3,7 @@ title: "Looney Tunes: WoM"
 date: "Oct 2019 – Apr 2022"
 type: "project"
 cover: "/images/ltwom.jpg"
+header: "/images/headers/looney-tunes.webp"
 order: 3
 collapsible: ["Old manual LiveOps pipeline", "New automated LiveOps pipeline"]
 summary: "Built a LiveOps art pipeline that cut asset integration from over a day to under 30 minutes."

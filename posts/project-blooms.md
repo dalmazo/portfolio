@@ -3,6 +3,7 @@ title: "Bloom & Breakfast"
 date: "Jun 2025 – Nov 2026"
 type: "project"
 cover: "/images/blooms-and-breakfast.png"
+header: "/images/headers/bloom-breakfast.webp"
 order: 1
 summary: "Technical art focused on UI integrations, technical debt, custom shaders, and tools for faster interface production."
 tags: ["Custom Shaders", "UI Integration", "UI Tools"]

@@ -2,6 +2,7 @@ import PostContent from "@/components/PostContent";
 import { getPostBySlug, getPostMeta, type PostType } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/format";
+import { asset } from "@/lib/asset";
 
 export default async function PostArticle({ slug, type }: { slug: string; type: PostType }) {
   if (getPostMeta(slug)?.type !== type) notFound();
@@ -10,6 +11,16 @@ export default async function PostArticle({ slug, type }: { slug: string; type: 
 
   return (
     <article className="space-y-4">
+      {post.header && (
+        // eslint-disable-next-line @next/next/no-img-element -- static export, images are unoptimized
+        <img
+          src={asset(post.header)}
+          alt={`${post.title} banner`}
+          width={1516}
+          height={398}
+          className="block aspect-[1516/398] w-full rounded-xl object-cover"
+        />
+      )}
       <header>
         <h1 className="text-2xl font-semibold">{post.title}</h1>
         <p className="text-xs opacity-60">{formatDate(post.date)}</p>

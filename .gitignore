@@ -44,3 +44,6 @@ next-env.d.ts
 reel/footage/
 reel/out/
 reel/music.mp3
+
+# Application PDFs (personal, not published)
+resume/out/
